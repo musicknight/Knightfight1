@@ -32,7 +32,7 @@ public class TheGame extends Application {
 	public static Character _character1 = new WhiteChar("one");
 	public static Character _character2 = new YellowChar("two");
 	private static Canvas _canvas = new Canvas(900, 600);
-	private int _score = 0;
+	
 
 	public static GraphicsContext _gc = _canvas.getGraphicsContext2D();
 	private Stage _stage;
@@ -49,6 +49,7 @@ public class TheGame extends Application {
 	private Button _shovelselect = new Button("select");
 	private Button _cloudselect = new Button("select");
 	private Button _gokuselect = new Button("select");
+	private Button _arielselect = new Button("select");
 	private Group _root1 = new Group();
 
 	private Button _replaybutton = new Button();
@@ -183,6 +184,20 @@ public class TheGame extends Application {
 
 						_gokuselect.setOnMousePressed(m::handleButtonPress);
 					}
+					// ariel
+					_gc.setFill(Color.RED);
+					_gc.drawImage(new Image("mermaid/stock.png"), 250, 400, 50, 50);
+					_gc.setFont(Font.font("Arial", 20));
+					_gc.fillText("ariel", 250, 390);
+					if (!_root1.getChildren().contains(_arielselect)) {
+						_arielselect.setMinWidth(50);
+						_arielselect.setMinHeight(25);
+						_arielselect.setLayoutX(250);
+						_arielselect.setLayoutY(450);
+						_root1.getChildren().add(_arielselect);
+
+						_arielselect.setOnMousePressed(m::handleButtonPress);
+					}
 				} else if (!_player2picked) {
 					// _animationTimer.start();
 					// _gc.clearRect(0, 0, 1000, 1000);
@@ -222,7 +237,11 @@ public class TheGame extends Application {
 					_gc.drawImage(new Image("goku/goku.png"), 100, 400, 50, 50);
 					_gc.setFont(Font.font("Arial", 20));
 					_gc.fillText("goku", 100, 390);
-
+					// ariel
+					_gc.setFill(Color.RED);
+					_gc.drawImage(new Image("mermaid/stock.png"), 250, 400, 50, 50);
+					_gc.setFont(Font.font("Arial", 20));
+					_gc.fillText("ariel", 250, 390);
 				} else {
 					_character1.setOtherChar(_character2);
 					_character2.setOtherChar(_character1);
@@ -232,6 +251,7 @@ public class TheGame extends Application {
 					_root1.getChildren().remove(_shovelselect);
 					_root1.getChildren().remove(_cloudselect);
 					_root1.getChildren().remove(_gokuselect);
+					_root1.getChildren().remove(_arielselect);
 					_character1.render(_gc);
 					_character2.render(_gc);
 					_character2.move();
@@ -393,20 +413,20 @@ public class TheGame extends Application {
 				}
 
 			}
-			if (event.getCode().toString().equals("O")) {
+			if (event.getCode().toString().equals("U")) {
 				_character2.pressAttack1();
 
 			}
-			if (event.getCode().toString().equals("U")) {
+			if (event.getCode().toString().equals("O")) {
 				_character2.pressAttack2();
 			}
-			if (event.getCode().toString().equals("P")) {
+			if (event.getCode().toString().equals("Y")) {
 				_character2.pressAttackU();
 			}
 
 		}
 
-		if (event.getCode().toString().equals("SEMICOLON")) {
+		if (event.getCode().toString().equals("H")) {
 			// checking if the character is whitebox
 			if ((_character2.isCanAct() || _character2.isCharging1())
 					&& _character2.getClass().toString().equals("class kf.WhiteChar")) {
@@ -587,6 +607,17 @@ public class TheGame extends Application {
 				_player1picked = true;
 			} else {
 				_character2 = new GokuChar("two");
+
+				_player2picked = true;
+
+			}
+		}
+		if (click.getSource().equals(_arielselect)) {
+			if (!_player1picked) {
+				_character1 = new MermaidChar("one");
+				_player1picked = true;
+			} else {
+				_character2 = new MermaidChar("two");
 
 				_player2picked = true;
 

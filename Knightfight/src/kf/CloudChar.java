@@ -44,7 +44,7 @@ public class CloudChar extends CharacterImpl {
 		}
 		if (_attacku) {
 			executeAttackU();
-			System.out.println("here");
+			
 		}
 
 	}

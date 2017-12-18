@@ -42,7 +42,7 @@ public class GokuChar extends CharacterImpl {
 		}
 		if (_attacku) {
 			executeAttackU();
-			if (!_attack1 && !_attack2 && !_attack3 && _ucounter >= 10) {
+			if (!_attack1 && !_attack2 && !_attack3 && _ucounter >= 10 && _ucounter < 360) {
 				if (_facing.equals("right")) {
 					_image = new Image("goku/gokuu.png");
 				} else {
@@ -206,6 +206,7 @@ public class GokuChar extends CharacterImpl {
 			_counter = 0;
 			_attack3 = true;
 			_canact = false;
+
 			if (!_attacku) {
 				if (_facing.equals("right")) {
 					_image = new Image("goku/charge1.png");
@@ -307,13 +308,16 @@ public class GokuChar extends CharacterImpl {
 		if (_ultcharge >= 150) {
 			_attacku = true;
 			_ucounter = 0;
-
+			_y -= 31;
+			_width = 120;
+			_height = 100;
 			_immune = true;
 			_canact = false;
 			_gravity = false;
 			_xvelocity = 0;
 			_yvelocity = 0;
 			_ultcharge = 0;
+
 			if (_facing.equals("right")) {
 				_image = new Image("goku/ult.png");
 			} else {
@@ -325,6 +329,151 @@ public class GokuChar extends CharacterImpl {
 	public void executeAttackU() {
 		if (_ucounter == 10) {
 			_canact = true;
+			_width = 50;
+			_height = 70;
+			_y += 30;
+		}
+		if (!_attack1 && !_attack2 && !_attack3) {
+			if (_ucounter == 360) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/gokuu.png");
+				} else {
+					_image = new Image("goku/gokuuleft.png");
+				}
+			}
+			if (_ucounter == 362) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/goku.png");
+				} else {
+					_image = new Image("goku/gokuleft.png");
+				}
+			}
+			if (_ucounter == 364) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/gokuu.png");
+				} else {
+					_image = new Image("goku/gokuuleft.png");
+				}
+			}
+			if (_ucounter == 366) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/goku.png");
+				} else {
+					_image = new Image("goku/gokuleft.png");
+				}
+			}
+			if (_ucounter == 368) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/gokuu.png");
+				} else {
+					_image = new Image("goku/gokuuleft.png");
+				}
+			}
+			if (_ucounter == 370) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/goku.png");
+				} else {
+					_image = new Image("goku/gokuleft.png");
+				}
+			}
+			if (_ucounter == 372) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/gokuu.png");
+				} else {
+					_image = new Image("goku/gokuuleft.png");
+				}
+			}
+			if (_ucounter == 374) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/goku.png");
+				} else {
+					_image = new Image("goku/gokuleft.png");
+				}
+			}
+			if (_ucounter == 376) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/gokuu.png");
+				} else {
+					_image = new Image("goku/gokuuleft.png");
+				}
+			}
+			if (_ucounter == 378) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/goku.png");
+				} else {
+					_image = new Image("goku/gokuleft.png");
+				}
+			}
+			if (_ucounter == 380) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/gokuu.png");
+				} else {
+					_image = new Image("goku/gokuuleft.png");
+				}
+			}
+			if (_ucounter == 382) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/goku.png");
+				} else {
+					_image = new Image("goku/gokuleft.png");
+				}
+			}
+			if (_ucounter == 384) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/gokuu.png");
+				} else {
+					_image = new Image("goku/gokuuleft.png");
+				}
+			}
+			if (_ucounter == 386) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/goku.png");
+				} else {
+					_image = new Image("goku/gokuleft.png");
+				}
+			}
+			if (_ucounter == 388) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/gokuu.png");
+				} else {
+					_image = new Image("goku/gokuuleft.png");
+				}
+			}
+			if (_ucounter == 390) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/goku.png");
+				} else {
+					_image = new Image("goku/gokuleft.png");
+				}
+			}
+			if (_ucounter == 392) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/gokuu.png");
+				} else {
+					_image = new Image("goku/gokuuleft.png");
+				}
+			}
+			if (_ucounter == 394) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/goku.png");
+				} else {
+					_image = new Image("goku/gokuleft.png");
+				}
+			}
+			if (_ucounter == 396) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/gokuu.png");
+				} else {
+					_image = new Image("goku/gokuuleft.png");
+				}
+			}
+			if (_ucounter == 398) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/goku.png");
+				} else {
+					_image = new Image("goku/gokuleft.png");
+				}
+			}
 		}
 		if (_ucounter == 400) {
 			_attacku = false;

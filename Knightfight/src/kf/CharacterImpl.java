@@ -59,11 +59,11 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 		if (_ID.equals("one")) {
 			gc.setFont(Font.font("Arial", 20));
 			gc.setFill(this.getColor());
-			gc.fillText("1", _x + 20, _y - 27);
+			gc.fillText("1", _x + (_width / 2), _y - 27);
 		} else {
 			gc.setFont(Font.font("Arial", 20));
 			gc.setFill(this.getColor());
-			gc.fillText("2", _x + 20, _y - 27);
+			gc.fillText("2", _x + (_width / 2), _y - 27);
 		}
 
 		if (_immune) {
@@ -317,6 +317,7 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 		_spawnimmunecounter = 0;
 		_immune = true;
 		_ultcharge = 0;
+		_canact = true;
 
 	}
 

@@ -35,12 +35,7 @@ public class SansChar extends CharacterImpl {
 		}
 
 		super.render(gc);
-		for (Hitbox a : TheGame._attacks) {
-			if (a.getID().equals("Bone") && a.getCharacter().equals(this)) {
-				System.out.println(a.getYVelocity());
 
-			}
-		}
 
 	}
 
@@ -59,7 +54,7 @@ public class SansChar extends CharacterImpl {
 		}
 		Hitbox attack = new HitboxImpl("Bone", this, true, _x + s, _y - 175, 100, 30, 0, 0, 25, 20,
 				new Image("bone.png"));
-		// System.out.println("attack added");
+	
 
 		for (Hitbox a : TheGame._attacks) {
 			if (a.getID().equals("Bone") && a.getCharacter().equals(this)) {

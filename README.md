@@ -37,7 +37,7 @@ Ultimate Attack: Y
 
 
 
-when you see the message U:READY under your , press ultimate for a strong attack that makes you immune!
+when you see the message U:READY under your character's damage/lives, press ultimate for a strong attack that makes you immune!
 
 sans: become a huge skull that blasts a devastating laser that does massive damage
 

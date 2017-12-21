@@ -109,3 +109,12 @@ attack3-skybolt volley :fly into the air, then shoot out a volley of 5 energy bl
 
 skybolt barrage: propel yourself upwards with a barrage of energy and hover over your opponent to pelt them with it
 
+jaden
+
+attack1-explosion: spin around and launch a fireball that explodes when colliding with an enemy, dealing high damage and knockback
+
+attack2-divebomb: transform into a fireball and dive towards the stage, dealing moderate damage/knockback if an enemy is hit
+
+attack3-soaring flame: propel yourself backwards and up by launching a fireball in the opposite direction
+
+ultimate-meteor shower: channel a meteor shower to rain upon your foe

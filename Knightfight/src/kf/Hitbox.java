@@ -37,5 +37,15 @@ public interface Hitbox extends Entity {
 	public void setBounces(boolean b);
 
 	public void setImage(Image i);
+	
+	public double getWidth();
+	
+	public double getHeight();
+	
+	public void setX(int x);
+	
+	public void setY(int y);
+	
+	
 
 }

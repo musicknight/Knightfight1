@@ -198,5 +198,20 @@ public class HitboxImpl extends EntityImpl implements Hitbox {
 	public void setImage(Image i) {
 		_image = i;
 	}
+	public double getWidth() {
+		return _width;
+	}
+	public double getHeight() {
+		return _height;
+	}
+	
+	public void setX(int x) {
+		_x = x;
+	}
+	public void setY(int y){
+		_y = y;
+	}
+	
+
 
 }

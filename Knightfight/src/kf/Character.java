@@ -117,4 +117,6 @@ public interface Character {
 	public void releaseDown();
 
 	public void releaseJump();
+	
+	public void setCanAct(boolean b);
 }

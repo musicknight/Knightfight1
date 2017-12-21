@@ -250,14 +250,14 @@ public class MermaidChar extends CharacterImpl {
 						attack = new HitboxImpl("fish", this, false, _x + 28, 350, 50, 50, 25, 0, 25, 28,
 								new Image("mermaid/fish.png"));
 						_reflected = true;
-						System.out.println("here");
+					
 
 					} else if (attack.getXVelocity() > 0 && attack.getX() >= _x) {
 						attack.setIsGone(true);
 						attack = new HitboxImpl("fish", this, false, _x - 50, 350, 50, 50, -25, 0, 25, 28,
 								new Image("mermaid/fishleft.png"));
 						_reflected = true;
-						System.out.println("there");
+					
 
 					}
 					toadd.add(attack);

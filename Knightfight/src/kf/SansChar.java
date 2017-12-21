@@ -124,7 +124,7 @@ public class SansChar extends CharacterImpl {
 					if (a.getID().equals("smallbone") && a.getCharacter().equals(this)) {
 						TheGame._attacks.remove(a);
 					}
-					System.out.println(a);
+				
 				}
 
 				attack.setIsGone(true);

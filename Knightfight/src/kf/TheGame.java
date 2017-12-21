@@ -50,7 +50,10 @@ public class TheGame extends Application {
 	private Button _cloudselect = new Button("select");
 	private Button _gokuselect = new Button("select");
 	private Button _arielselect = new Button("select");
+	private Button _gengarselect = new Button("select");
+	private Button _frankselect = new Button("select");
 	private Group _root1 = new Group();
+	public static boolean _rendering = true;
 
 	private Button _replaybutton = new Button();
 	// public static Set<PreHitbox> _preattacks = new HashSet<PreHitbox>();
@@ -88,8 +91,9 @@ public class TheGame extends Application {
 			private long _last = 0;
 
 			public void handle(long currentNanoTime) {
+				if(_rendering) {
 				_gc.clearRect(0, 0, 1000, 1000);
-
+				}
 				if (!_player1picked) {
 
 					_gc.setFill(Color.RED);
@@ -198,6 +202,34 @@ public class TheGame extends Application {
 
 						_arielselect.setOnMousePressed(m::handleButtonPress);
 					}
+					// gengar
+					_gc.setFill(Color.PURPLE);
+					_gc.drawImage(new Image("gengar/stock.png"), 400, 400, 50, 50);
+					_gc.setFont(Font.font("Arial", 20));
+					_gc.fillText("gengar", 395, 390);
+					if (!_root1.getChildren().contains(_gengarselect)) {
+						_gengarselect.setMinWidth(50);
+						_gengarselect.setMinHeight(25);
+						_gengarselect.setLayoutX(400);
+						_gengarselect.setLayoutY(450);
+						_root1.getChildren().add(_gengarselect);
+
+						_gengarselect.setOnMousePressed(m::handleButtonPress);
+					}
+					// frank
+					_gc.setFill(Color.BLUE);
+					_gc.drawImage(new Image("frank/frank.gif"), 550, 400, 50, 50);
+					_gc.setFont(Font.font("Arial", 20));
+					_gc.fillText("frank", 553, 390);
+					if (!_root1.getChildren().contains(_frankselect)) {
+						_frankselect.setMinWidth(50);
+						_frankselect.setMinHeight(25);
+						_frankselect.setLayoutX(550);
+						_frankselect.setLayoutY(450);
+						_root1.getChildren().add(_frankselect);
+
+						_frankselect.setOnMousePressed(m::handleButtonPress);
+					}
 				} else if (!_player2picked) {
 					// _animationTimer.start();
 					// _gc.clearRect(0, 0, 1000, 1000);
@@ -242,6 +274,16 @@ public class TheGame extends Application {
 					_gc.drawImage(new Image("mermaid/stock.png"), 250, 400, 50, 50);
 					_gc.setFont(Font.font("Arial", 20));
 					_gc.fillText("ariel", 250, 390);
+					// gengar
+					_gc.setFill(Color.PURPLE);
+					_gc.drawImage(new Image("gengar/stock.png"), 400, 400, 50, 50);
+					_gc.setFont(Font.font("Arial", 20));
+					_gc.fillText("gengar", 395, 390);
+					// frank
+					_gc.setFill(Color.BLUE);
+					_gc.drawImage(new Image("frank/frank.gif"), 550, 400, 50, 50);
+					_gc.setFont(Font.font("Arial", 20));
+					_gc.fillText("frank", 553, 390);
 				} else {
 					_character1.setOtherChar(_character2);
 					_character2.setOtherChar(_character1);
@@ -252,15 +294,12 @@ public class TheGame extends Application {
 					_root1.getChildren().remove(_cloudselect);
 					_root1.getChildren().remove(_gokuselect);
 					_root1.getChildren().remove(_arielselect);
-					_character1.render(_gc);
-					_character2.render(_gc);
-					_character2.move();
-					_character1.move();
-					_character1.incrementCounter();
-					_character2.incrementCounter();
+					_root1.getChildren().remove(_gengarselect);
+					_root1.getChildren().remove(_frankselect);
 					_platform.render(_gc);
 					_gc.setFont(Font.font("Arial", 20));
 					_gc.setFill(_character1.getColor());
+					
 					String damage1 = (Math.round(((_character1.getDamage()) * .5) - .5)) + "%";
 					String damage2 = (Math.round(((_character2.getDamage()) * .5) - .5)) + "%";
 					String ult1;
@@ -283,6 +322,12 @@ public class TheGame extends Application {
 					_gc.fillText(damage2, 140, 100);
 					_gc.fillText(ult2, 140, 150);
 					printStocks();
+					_character1.render(_gc);
+					_character2.render(_gc);
+					_character2.move();
+					_character1.move();
+					_character1.incrementCounter();
+					_character2.incrementCounter();
 					List<Hitbox> attackstoremove = new ArrayList<Hitbox>();
 					for (Hitbox a : _attacks) {
 						a.render(_gc);
@@ -386,7 +431,7 @@ public class TheGame extends Application {
 
 	public void handleKeyPress(KeyEvent event) {
 
-		if (_character2.isCanAct()) {
+	
 
 			if (event.getCode().toString().equals("SLASH")) {
 				_character2.pressJump();
@@ -424,19 +469,10 @@ public class TheGame extends Application {
 				_character2.pressAttackU();
 			}
 
-		}
-
-		if (event.getCode().toString().equals("H")) {
-			// checking if the character is whitebox
-			if ((_character2.isCanAct() || _character2.isCharging1())
-					&& _character2.getClass().toString().equals("class kf.WhiteChar")) {
-				_character2.pressAttack3();
-			} else if (_character2.isCanAct()) {
+			if (event.getCode().toString().equals("H")) {
 				_character2.pressAttack3();
 			}
-
-		}
-		if (_character1.isCanAct()) {
+		
 			if (event.getCode().toString().equals("E")) {
 				_character1.pressAttack1();
 			}
@@ -471,16 +507,10 @@ public class TheGame extends Application {
 
 			}
 
-		}
-		if (event.getCode().toString().equals("F")) {
-			// checking if the character is whitebox
-			if ((_character1.isCanAct() || _character1.isCharging1())
-					&& _character1.getClass().toString().equals("class kf.WhiteChar")) {
+			if (event.getCode().toString().equals("F")) {
 				_character1.pressAttack3();
-			} else if (_character1.isCanAct()) {
-				_character1.pressAttack3();
+		
 			}
-		}
 
 	}
 
@@ -623,7 +653,28 @@ public class TheGame extends Application {
 
 			}
 		}
+		if (click.getSource().equals(_gengarselect)) {
+			if (!_player1picked) {
+				_character1 = new GengarChar("one");
+				_player1picked = true;
+			} else {
+				_character2 = new GengarChar("two");
 
+				_player2picked = true;
+
+			}
+		}
+		if (click.getSource().equals(_frankselect)) {
+			if (!_player1picked) {
+				_character1 = new FrankChar("one");
+				_player1picked = true;
+			} else {
+				_character2 = new FrankChar("two");
+
+				_player2picked = true;
+
+			}
+		}
 		if (click.getSource().equals(_replaybutton)) {
 			_stage.close();
 			Stage sad = new Stage();
@@ -664,5 +715,7 @@ public class TheGame extends Application {
 			_gc.drawImage(_character2.getStockImage(), 140, 120, 10, 10);
 		}
 	}
+	
+	
 
 }

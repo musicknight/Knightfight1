@@ -362,6 +362,8 @@ public class CloudChar extends CharacterImpl {
 		_attack3 = false;
 		super.respawn();
 		_canact = true;
+		_width = 80;
+		_height = 70;
 	}
 
 }

@@ -263,6 +263,10 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 	public boolean isCanAct() {
 		return _canact;
 	}
+	
+	public void setCanAct(boolean b) {
+		_canact = b;
+	}
 
 	public double getDamage() {
 		return _damage;
@@ -374,37 +378,51 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 	}
 
 	public void pressRight() {
+		if(_canact) {
 		_xvelocity = 5.5 * _speedfactor;
 		_facing = "right";
+		}
 	}
 
 	public void pressLeft() {
+		if(_canact) {
 		_xvelocity = -5.5 * _speedfactor;
 		_facing = "left";
+		}
 	}
 
 	public void pressJump() {
+		if(_canact) {
 		if (_canjump1) {
 			jump1();
 		} else {
 			jump2();
 		}
+		}
 	}
 
 	public void pressAttack1() {
+		if(_canact) {
 		attack1();
+		}
 	}
 
 	public void pressAttack2() {
+		if(_canact) {
 		attack2();
+		}
 	}
 
 	public void pressAttack3() {
+		if(_canact) {
 		attack3();
+		}
 	}
 
 	public void pressAttackU() {
+		if(_canact) {
 		attackU();
+		}
 	}
 
 	public void releaseUp() {

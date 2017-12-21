@@ -39,17 +39,17 @@ Ultimate Attack: Y
 
 when you see the message U:READY under your character's damage/lives, press ultimate for a strong attack that makes you immune!
 
-sans: become a huge skull that blasts a devastating laser that does massive damage
+sans-mega gaster blaster: become a huge skull that blasts a devastating laser that does massive damage
 
-shovel knight: recieve assistance from shield knight as she barrages your opponent from all angles
+shovel knight-requiem of shield knight: recieve assistance from shield knight as she barrages your opponent from all angles
 
-cloud: dash repeatedly at your enemy from one side of the screen
+cloud-omnislash: dash repeatedly at your enemy from one side of the screen
 
-goku: become a super saiyan, granting flying(jump and up fly upwards, down flies downwards), and empowered attack1 and attack2!
+goku-super saiyan: become a super saiyan, granting flying(jump and up fly upwards, down flies downwards), and empowered attack1 and attack2!
 
-ariel: turn into a tidal wave and rush to the side of the stage
+ariel-tidal wave: turn into a tidal wave and rush to the side of the stage
 
-gengar: unleash an onslaught of shadow balls onto your helpless opponent
+gengar-dark onslaught: unleash an onslaught of shadow balls onto your helpless opponent
 
-frank: propel yourself upwards with a barrage of energy and hover over your opponent to pelt them with it
+frank-skybolt barrage: propel yourself upwards with a barrage of energy and hover over your opponent to pelt them with it
 

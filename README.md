@@ -3,6 +3,8 @@ My current video game project
 
 Thanks for checking out my game!
 
+The objective is to knock the other character off of the platform 3 times. if a player has higher damage that means they will be knocked back more. taking/dealing damage builds up ultimate chrage. when you see the message U:READY under your character's damage/lives, press ultimate for a strong attack that makes you immune!
+
 CONTROLS:
 
 Player1:
@@ -37,7 +39,7 @@ Ultimate Attack: Y
 
 
 
-when you see the message U:READY under your character's damage/lives, press ultimate for a strong attack that makes you immune!
+
 
 sans
 
@@ -115,6 +117,6 @@ attack1-explosion: spin around and launch a fireball that explodes when collidin
 
 attack2-divebomb: transform into a fireball and dive towards the stage, dealing moderate damage/knockback if an enemy is hit
 
-attack3-soaring flame: propel yourself backwards and up by launching a fireball in the opposite direction
+attack3-soaring flame: propel yourself backwards and up by launching a fireball in the opposite direction. can only be used twice in a row without landing on the platform.
 
 ultimate-meteor shower: channel a meteor shower to rain upon your foe

@@ -51,3 +51,5 @@ ariel: turn into a tidal wave and rush to the side of the stage
 
 gengar: unleash an onslaught of shadow balls onto your helpless opponent
 
+frank: propel yourself upwards with a barrage of energy and hover over your opponent to pelt them with it
+

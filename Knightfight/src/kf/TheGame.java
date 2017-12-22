@@ -52,6 +52,7 @@ public class TheGame extends Application {
 	private Button _arielselect = new Button("select");
 	private Button _gengarselect = new Button("select");
 	private Button _frankselect = new Button("select");
+	private Button _jadenselect = new Button("select");
 	private Group _root1 = new Group();
 	public static boolean _rendering = true;
 
@@ -230,6 +231,20 @@ public class TheGame extends Application {
 
 						_frankselect.setOnMousePressed(m::handleButtonPress);
 					}
+					// jaden
+					_gc.setFill(Color.DARKORANGE);
+					_gc.drawImage(new Image("jaden/jaden.gif"), 700, 400, 50, 50);
+					_gc.setFont(Font.font("Arial", 20));
+					_gc.fillText("jaden", 703, 390);
+					if (!_root1.getChildren().contains(_jadenselect)) {
+						_jadenselect.setMinWidth(50);
+						_jadenselect.setMinHeight(25);
+						_jadenselect.setLayoutX(700);
+						_jadenselect.setLayoutY(450);
+						_root1.getChildren().add(_jadenselect);
+
+						_jadenselect.setOnMousePressed(m::handleButtonPress);
+					}
 				} else if (!_player2picked) {
 					// _animationTimer.start();
 					// _gc.clearRect(0, 0, 1000, 1000);
@@ -284,6 +299,11 @@ public class TheGame extends Application {
 					_gc.drawImage(new Image("frank/frank.gif"), 550, 400, 50, 50);
 					_gc.setFont(Font.font("Arial", 20));
 					_gc.fillText("frank", 553, 390);
+					// jaden
+					_gc.setFill(Color.DARKORANGE);
+					_gc.drawImage(new Image("jaden/jaden.gif"), 700, 400, 50, 50);
+					_gc.setFont(Font.font("Arial", 20));
+					_gc.fillText("jaden", 703, 390);
 				} else {
 					_character1.setOtherChar(_character2);
 					_character2.setOtherChar(_character1);
@@ -296,6 +316,7 @@ public class TheGame extends Application {
 					_root1.getChildren().remove(_arielselect);
 					_root1.getChildren().remove(_gengarselect);
 					_root1.getChildren().remove(_frankselect);
+					_root1.getChildren().remove(_jadenselect);
 					_platform.render(_gc);
 					_gc.setFont(Font.font("Arial", 20));
 					_gc.setFill(_character1.getColor());
@@ -670,6 +691,17 @@ public class TheGame extends Application {
 				_player1picked = true;
 			} else {
 				_character2 = new FrankChar("two");
+
+				_player2picked = true;
+
+			}
+		}
+		if (click.getSource().equals(_jadenselect)) {
+			if (!_player1picked) {
+				_character1 = new JadenChar("one");
+				_player1picked = true;
+			} else {
+				_character2 = new JadenChar("two");
 
 				_player2picked = true;
 

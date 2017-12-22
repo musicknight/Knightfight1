@@ -301,7 +301,9 @@ public class FrankChar extends CharacterImpl {
 				_image = new Image("frank/jump2left.gif");
 				d = 3;
 			}
-			TheGame._attacks.add(new HitboxImpl("skybolt", this, false, _x + d, _y + 50, 28, 28, 0, 15, 15, 15, new Image("frank/skybolt.png")));
+			Hitbox attack = new HitboxImpl("skybolt", this, false, _x + d, _y + 50, 28, 28, 0, 15, 15, 15, new Image("frank/skybolt.png"));
+			attack.setHOrientation(true);
+			TheGame._attacks.add(attack);
 		}
 		if(_counter == 200) {
 			_immune = false;

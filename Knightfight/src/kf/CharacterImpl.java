@@ -31,7 +31,6 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 	protected double _ultcharge;
 	protected boolean _attacku;
 	protected boolean _gravity = true;
-
 	private int _lives = 3;
 
 	public CharacterImpl(String ID) {

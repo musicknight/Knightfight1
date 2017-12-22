@@ -495,6 +495,14 @@ public class GengarChar extends CharacterImpl {
 		super.incrementCounter();
 		_gunkcounter++;
 	}
+	@Override
+	public void respawn() {
+		super.respawn();
+		_charge = 0;
+		_attack1 = false;
+		_attack2 = false;
+		_attack3 = false;
+	}
 	
 
 }

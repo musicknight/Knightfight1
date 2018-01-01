@@ -51,12 +51,19 @@ public class JadenChar extends CharacterImpl {
 		}
 		if(_attack2 ) {
 			executeAttack2();
+			_width = 36;
+			_height = 45;
+			_image = new Image("jaden/flamedive.png");
+			_attack3 = false;
 		}
 		if(_attack3) {
 			executeAttack3();
 		}
 		if(_attacku) {
 			executeAttackU();
+		}
+		if(!_attack2) {
+			_gravity = true;
 		}
 		if(_fireball.isGone() && _fireballex) {
 			_fireball.explode();
@@ -89,6 +96,7 @@ public class JadenChar extends CharacterImpl {
 		if(!_attack3){
 		_counter = 0;
 		_xvelocity = 0;
+		_gravity = true;
 		_canact = false;
 		_attack1 = true;
 		_width = 48;
@@ -303,6 +311,7 @@ public class JadenChar extends CharacterImpl {
 		_attack3 = true;
 		_yvelocity = -13;
 		_counter = 0;
+		_gravity = true;
 		int d;
 		double v;
 		Image i;

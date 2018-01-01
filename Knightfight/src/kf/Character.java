@@ -119,4 +119,8 @@ public interface Character {
 	public void releaseJump();
 	
 	public void setCanAct(boolean b);
+	
+	public boolean isHasPriority();
+	
+	
 }

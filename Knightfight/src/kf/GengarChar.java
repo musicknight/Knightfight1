@@ -138,10 +138,10 @@ public class GengarChar extends CharacterImpl {
 			Hitbox attack;
 			if (_facing.equals("right")) {
 				_image = new Image("gengar/maxcharge.png");
-				attack = new HitboxImpl("shadowball", this, false, _x + 80, _y + 25, 80, 40, 12, 0, 25, _charge * 1.6, new Image("gengar/balls.png"));
+				attack = new HitboxImpl("shadowball", this, false, _x + 80, _y + 15, 120, 60, 16, 0, 25, _charge * 1.6, new Image("gengar/balls.png"));
 			} else {
 				_image = new Image("gengar/maxchargeleft.png");
-				attack = new HitboxImpl("shadowball", this, false, _x - 80, _y + 25, 80, 40, -12, 0, 25, _charge * 1.6, new Image("gengar/ballsleft.png"));
+				attack = new HitboxImpl("shadowball", this, false, _x - 120, _y + 15, 120, 60, -16, 0, 25, _charge * 1.6, new Image("gengar/ballsleft.png"));
 			}
 			TheGame._attacks.add(attack);
 			_charge = 0;

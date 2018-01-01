@@ -11,6 +11,7 @@ import javafx.scene.text.Font;
 public abstract class CharacterImpl extends EntityImpl implements Character {
 
 	protected Image _image;
+	protected boolean _dodged;
 	protected Character _otherchar;
 	protected double _counter = 0;
 	protected double _spawnimmunecounter = 0;
@@ -31,6 +32,8 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 	protected double _ultcharge;
 	protected boolean _attacku;
 	protected boolean _gravity = true;
+	//means this char should be rendered on top
+	protected boolean _haspriority = false;
 	private int _lives = 3;
 
 	public CharacterImpl(String ID) {
@@ -241,10 +244,12 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 
 			_damage += h.getDamage();
 			if (!_attacku && !h.getCharacter().isAttackU()) {
-				_ultcharge += h.getDamage();
-				h.getCharacter().addUltCharge(h.getDamage() / 2);
+				_ultcharge += h.getDamage() / 3;
+				h.getCharacter().addUltCharge(h.getDamage() / 6);
 			}
 			_xvelocity = _damagefactor * xdirection * h.getKnockback() * (0.006 * (_damage));
+		} else {
+			_dodged = true;
 		}
 		// _damage+= h.getDamage();
 	}
@@ -319,7 +324,7 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 		}
 		_spawnimmunecounter = 0;
 		_immune = true;
-		_ultcharge = 0;
+		//_ultcharge = 0;
 		_canact = true;
 
 	}
@@ -434,5 +439,9 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 
 	public void releaseJump() {
 
+	}
+	
+	public boolean isHasPriority() {
+		return _haspriority;
 	}
 }

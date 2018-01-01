@@ -166,7 +166,7 @@ public class MermaidChar extends CharacterImpl {
 				_image = new Image("mermaid/flail2left.png");
 				_x -= 50;
 			}
-			Hitbox attack = new CharLinkedHitbox("flail", this, 30, 16);
+			Hitbox attack = new CharLinkedHitbox("flail", this, 33, 16);
 			TheGame._attacks.add(attack);
 		}
 		if (_counter == 24) {

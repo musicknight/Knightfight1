@@ -96,7 +96,7 @@ public class CloudChar extends CharacterImpl {
 				i = new Image("cloud/cloudslashleft.gif");
 			}
 
-			Hitbox attack = new HitboxImpl("slashprojectile", this, false, _x + s, _y + 10, 50, 45, v, 0, 10, 20, i);
+			Hitbox attack = new HitboxImpl("slashprojectile", this, false, _x + s, _y - 5, 75, 75, v, 0, 10, 20, i);
 			for (Hitbox a : TheGame._attacks) {
 				if (a.getID().equals("slashprojectile") && a.getCharacter().equals(this)) {
 

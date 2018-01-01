@@ -60,6 +60,24 @@ public class GokuChar extends CharacterImpl {
 		if (_attack3) {
 			executeAttack3();
 		}
+		if(_cd2 == 0) {
+			int x;
+			if(_ID.equals("one")){
+				x = 50;
+			} else {
+				x = 140;
+			}
+			TheGame._gc.drawImage(new Image("goku/vanish1.png"), x, 160, 25, 25);
+		}
+		if(_cd3 == 0) {
+			int x;
+			if(_ID.equals("one")){
+				x = 50;
+			} else {
+				x = 140;
+			}
+			TheGame._gc.drawImage(new Image("goku/kame.png"), x + 26, 160, 25, 25);
+		}
 	}
 
 	@Override
@@ -98,7 +116,7 @@ public class GokuChar extends CharacterImpl {
 
 	public void executeAttack1() {
 
-		if (_counter < 15) {
+		if (_counter < 8) {
 			_xvelocity = 0;
 			_yvelocity = 0;
 		}
@@ -113,7 +131,7 @@ public class GokuChar extends CharacterImpl {
 			for (Hitbox a : remove) {
 				TheGame._attacks.remove(a);
 			}
-			if (_counter < 15) {
+			if (_counter < 8) {
 				_y += 29;
 
 			}
@@ -123,7 +141,7 @@ public class GokuChar extends CharacterImpl {
 			_canact = false;
 			return;
 		}
-		if (_counter == 15) {
+		if (_counter == 8) {
 			_y += 29;
 			_width = 70;
 			_height = 70;
@@ -151,7 +169,7 @@ public class GokuChar extends CharacterImpl {
 				TheGame._attacks.add(attack);
 			}
 		}
-		if (_counter == 39) {
+		if (_counter == 28) {
 
 			_width = 50;
 			_attack1 = false;

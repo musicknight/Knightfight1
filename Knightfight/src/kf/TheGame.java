@@ -53,6 +53,7 @@ public class TheGame extends Application {
 	private Button _gengarselect = new Button("select");
 	private Button _frankselect = new Button("select");
 	private Button _jadenselect = new Button("select");
+	private Button _ninjaselect = new Button("select");
 	private Group _root1 = new Group();
 	public static boolean _rendering = true;
 
@@ -117,18 +118,18 @@ public class TheGame extends Application {
 						_whiteboxselect.setOnMousePressed(m::handleButtonPress);
 					}
 
-					// yellowbox
-					_gc.setFill(Color.YELLOW);
-					_gc.fillRect(250, 200, 50, 50);
-					_gc.fillText("yellowbox", 230, 190);
-					if (!_root1.getChildren().contains(_yellowboxselect)) {
+					// ninja
+					_gc.setFill(Color.PINK);
+					_gc.drawImage(new Image("ninja/ninja.png"), 250, 200, 50, 50);
+					_gc.fillText("ninja kirby", 228, 190);
+					if (!_root1.getChildren().contains(_ninjaselect)) {
 
-						_yellowboxselect.setMinWidth(50);
-						_yellowboxselect.setMinHeight(25);
-						_yellowboxselect.setLayoutX(250);
-						_yellowboxselect.setLayoutY(250);
-						_root1.getChildren().add(_yellowboxselect);
-						_yellowboxselect.setOnMousePressed(m::handleButtonPress);
+						_ninjaselect.setMinWidth(50);
+						_ninjaselect.setMinHeight(25);
+						_ninjaselect.setLayoutX(250);
+						_ninjaselect.setLayoutY(250);
+						_root1.getChildren().add(_ninjaselect);
+						_ninjaselect.setOnMousePressed(m::handleButtonPress);
 					}
 					// sans
 					_gc.setFill(Color.WHITE);
@@ -259,11 +260,10 @@ public class TheGame extends Application {
 					_gc.fillRect(100, 200, 50, 50);
 					_gc.setFont(Font.font("Arial", 20));
 					_gc.fillText("whitebox", 85, 190);
-					// yellowbox
-					_gc.setFill(Color.YELLOW);
-					_gc.fillRect(250, 200, 50, 50);
-					_gc.fillText("yellowbox", 230, 190);
-					// _animationTimer.stop();
+					// ninja
+					_gc.setFill(Color.PINK);
+					_gc.drawImage(new Image("ninja/ninja.png"), 250, 200, 50, 50);
+					_gc.fillText("ninja kirby", 228, 190);
 					// sans
 					_gc.setFill(Color.WHITE);
 					_gc.drawImage(new Image("sans.jpg"), 400, 200, 50, 50);
@@ -317,6 +317,7 @@ public class TheGame extends Application {
 					_root1.getChildren().remove(_gengarselect);
 					_root1.getChildren().remove(_frankselect);
 					_root1.getChildren().remove(_jadenselect);
+					_root1.getChildren().remove(_ninjaselect);
 					_platform.render(_gc);
 					_gc.setFont(Font.font("Arial", 20));
 					_gc.setFill(_character1.getColor());
@@ -343,10 +344,19 @@ public class TheGame extends Application {
 					_gc.fillText(damage2, 140, 100);
 					_gc.fillText(ult2, 140, 150);
 					printStocks();
-					_character1.render(_gc);
-					_character2.render(_gc);
-					_character2.move();
-					_character1.move();
+					if(_character1.isHasPriority()) {
+						_character2.render(_gc);
+						_character2.move();
+						_character1.render(_gc);
+						_character1.move();
+					} else {
+						_character1.render(_gc);
+						_character1.move();
+						_character2.render(_gc);
+						_character2.move();
+					}
+					
+					
 					_character1.incrementCounter();
 					_character2.incrementCounter();
 					List<Hitbox> attackstoremove = new ArrayList<Hitbox>();
@@ -702,6 +712,17 @@ public class TheGame extends Application {
 				_player1picked = true;
 			} else {
 				_character2 = new JadenChar("two");
+
+				_player2picked = true;
+
+			}
+		}
+		if (click.getSource().equals(_ninjaselect)) {
+			if (!_player1picked) {
+				_character1 = new NinjaChar("one");
+				_player1picked = true;
+			} else {
+				_character2 = new NinjaChar("two");
 
 				_player2picked = true;
 

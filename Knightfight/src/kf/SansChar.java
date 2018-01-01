@@ -260,11 +260,11 @@ public class SansChar extends CharacterImpl {
 			p = 0;
 			w = _x + 38;
 		}
-		Hitbox attack = new MeleeHitbox("ublaster", this, p + d, _y + 12, w, 100, 3, 2.5, Color.WHITE);
+		Hitbox attack = new MeleeHitbox("ublaster", this, p + d, _y + 12, w, 100, 3, 2.8, Color.WHITE);
 		attack.setDissappearOnHit(false);
-		Hitbox attack1 = new MeleeHitbox("ublaster1", this, p + d, _y + 51, w, 25, 3, 2.5, Color.WHITE);
+		Hitbox attack1 = new MeleeHitbox("ublaster1", this, p + d, _y + 51, w, 25, 3, 2.8, Color.WHITE);
 		attack1.setDissappearOnHit(false);
-		Hitbox attack2 = new MeleeHitbox("ublaster2", this, p + d, _y + 32, w, 50, 3, 2.5, Color.WHITE);
+		Hitbox attack2 = new MeleeHitbox("ublaster2", this, p + d, _y + 32, w, 50, 3, 2.8, Color.WHITE);
 		attack2.setDissappearOnHit(false);
 
 		if (_counter == 20) {

@@ -41,11 +41,11 @@ zero - deals good damage with attack1, spacing with attack3, and knockback with 
 
 attack1-z-saber combo - a 3 hit combo done by pressing attack1 3 times within a short amount of time. the first and second hits dont do very much knockback, and the third shoots out a projectile with decent knockback
 
-attack2-z-saber smash - after a delay, slam your saber into the ground creating a shockwave that does heavy knockback/damage
+attack2-z-saber smash: after a delay, slam your saber into the ground creating a shockwave that does heavy knockback/damage
 
-attack3-rising slash - slash upwards and fly into the air
+attack3-rising slash: slash upwards and fly into the air
 
-ultimate - to be implemented
+ultimate-z-saber vortex: jump in the air and spin rapidly, moving with the directional keys (W/S and I/K are up and down for player 1 and 2, respectively
 
 ninja kirby - not very much knockback, but quick movement speed and mobility from attack2 can make up for this. counterstrike has relatively high knockback. 
 

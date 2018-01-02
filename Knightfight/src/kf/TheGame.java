@@ -54,6 +54,7 @@ public class TheGame extends Application {
 	private Button _frankselect = new Button("select");
 	private Button _jadenselect = new Button("select");
 	private Button _ninjaselect = new Button("select");
+	private Button _zeroselect = new Button("select");
 	private Group _root1 = new Group();
 	public static boolean _rendering = true;
 
@@ -103,19 +104,19 @@ public class TheGame extends Application {
 
 					_gc.fillText("PLAYER 1, CHOOSE YOUR CHARACTER", 20, 60);
 
-					// whitebox
-					_gc.setFill(Color.WHITE);
-					_gc.fillRect(100, 200, 50, 50);
+					// zero
+					_gc.setFill(Color.RED);
+					_gc.drawImage(new Image("zero/zero.gif"), 100, 200, 50, 50);
 					_gc.setFont(Font.font("Arial", 20));
-					_gc.fillText("whitebox", 85, 190);
-					if (!_root1.getChildren().contains(_whiteboxselect)) {
-						_whiteboxselect.setMinWidth(50);
-						_whiteboxselect.setMinHeight(25);
-						_whiteboxselect.setLayoutX(100);
-						_whiteboxselect.setLayoutY(250);
-						_root1.getChildren().add(_whiteboxselect);
+					_gc.fillText("zero", 106, 190);
+					if (!_root1.getChildren().contains(_zeroselect)) {
+						_zeroselect.setMinWidth(50);
+						_zeroselect.setMinHeight(25);
+						_zeroselect.setLayoutX(100);
+						_zeroselect.setLayoutY(250);
+						_root1.getChildren().add(_zeroselect);
 
-						_whiteboxselect.setOnMousePressed(m::handleButtonPress);
+						_zeroselect.setOnMousePressed(m::handleButtonPress);
 					}
 
 					// ninja
@@ -254,12 +255,11 @@ public class TheGame extends Application {
 
 					_gc.fillText("PLAYER 2, CHOOSE YOUR CHARACTER", 20, 60);
 
-					// whitebox
-
-					_gc.setFill(Color.WHITE);
-					_gc.fillRect(100, 200, 50, 50);
+					// zero
+					_gc.setFill(Color.RED);
+					_gc.drawImage(new Image("zero/zero.gif"), 100, 200, 50, 50);
 					_gc.setFont(Font.font("Arial", 20));
-					_gc.fillText("whitebox", 85, 190);
+					_gc.fillText("zero", 106, 190);
 					// ninja
 					_gc.setFill(Color.PINK);
 					_gc.drawImage(new Image("ninja/ninja.png"), 250, 200, 50, 50);
@@ -318,6 +318,7 @@ public class TheGame extends Application {
 					_root1.getChildren().remove(_frankselect);
 					_root1.getChildren().remove(_jadenselect);
 					_root1.getChildren().remove(_ninjaselect);
+					_root1.getChildren().remove(_zeroselect);
 					_platform.render(_gc);
 					_gc.setFont(Font.font("Arial", 20));
 					_gc.setFill(_character1.getColor());
@@ -727,6 +728,19 @@ public class TheGame extends Application {
 				_player2picked = true;
 
 			}
+			
+		}
+		if (click.getSource().equals(_zeroselect)) {
+			if (!_player1picked) {
+				_character1 = new ZeroChar("one");
+				_player1picked = true;
+			} else {
+				_character2 = new ZeroChar("two");
+
+				_player2picked = true;
+
+			}
+			
 		}
 		if (click.getSource().equals(_replaybutton)) {
 			_stage.close();
@@ -766,6 +780,17 @@ public class TheGame extends Application {
 		if (_character2.getLives() >= 1) {
 
 			_gc.drawImage(_character2.getStockImage(), 140, 120, 10, 10);
+		}
+	}
+	public static void clearHitboxes(String ID, Character c) {
+		List<Hitbox> remove = new ArrayList<Hitbox>();
+		for (Hitbox a : TheGame._attacks) {
+			if (a.getID().equals(ID) && a.getCharacter().equals(c)) {
+				remove.add(a);
+			}
+		}
+		for (Hitbox a : remove) {
+			TheGame._attacks.remove(a);
 		}
 	}
 	

@@ -37,9 +37,17 @@ Attack3: H
 
 Ultimate Attack: Y
 
+zero - deals good damage with attack1, spacing with attack3, and knockback with attack2
 
+attack1-z-saber combo - a 3 hit combo done by pressing attack1 3 times within a short amount of time. the first and second hits dont do very much knockback, and the third shoots out a projectile with decent knockback
 
-ninja kirby - not very much knockback, but quick movement and mobility from attack2 can make up for this. counterstrike has relatively high knockback. 
+attack2-z-saber smash - after a delay, slam your saber into the ground creating a shockwave that does heavy knockback/damage
+
+attack3-rising slash - slash upwards and fly into the air
+
+ultimate - to be implemented
+
+ninja kirby - not very much knockback, but quick movement speed and mobility from attack2 can make up for this. counterstrike has relatively high knockback. 
 
 attack1-shuriken toss: spin around and throw a shuriken that deals moderate damage
 

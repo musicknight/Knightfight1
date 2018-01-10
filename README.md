@@ -1,9 +1,9 @@
 # Knightfight1
-My current video game project
+
 
 Thanks for checking out my game!
 
-The objective is to knock the other character off of the platform 3 times. if a player has higher damage that means they will be knocked back more. taking/dealing damage builds up ultimate chrage. when you see the message U:READY under your character's damage/lives, press ultimate for a strong attack that makes you immune!
+The objective is to knock the other character off of the platform 3 times (think smash). if a player has higher damage that means they will be knocked back more. taking/dealing damage builds up ultimate chrage. when you see the message U:READY under your character's damage/lives, press ultimate for a strong attack that makes you immune!
 
 CONTROLS:
 

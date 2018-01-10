@@ -79,7 +79,7 @@ public class CloudChar extends CharacterImpl {
 				_image = new Image("cloud/cloudslice1left.png");
 			}
 		}
-		if (_counter == 18) {
+		if (_counter == 12) {
 			_width = 85;
 			double v;
 			int s;
@@ -105,7 +105,7 @@ public class CloudChar extends CharacterImpl {
 			}
 			TheGame._attacks.add(attack);
 		}
-		if (_counter == 23) {
+		if (_counter == 17) {
 			_y -= 41;
 			_width = 60;
 			_height = 110;
@@ -115,7 +115,7 @@ public class CloudChar extends CharacterImpl {
 				_image = new Image("cloud/cloudslice3left.png");
 			}
 		}
-		if (_counter == 31) {
+		if (_counter == 25) {
 			_attack1 = false;
 			_canact = true;
 			_width = 80;
@@ -192,7 +192,7 @@ public class CloudChar extends CharacterImpl {
 	@Override
 	public void attack3() {
 		_attack3 = true;
-		_yvelocity = -17;
+		_yvelocity = -18;
 		_canact = false;
 		_y -= 31;
 		_height = 100;
@@ -202,6 +202,7 @@ public class CloudChar extends CharacterImpl {
 			_image = new Image("cloud/cloudjump1.png");
 		} else {
 			_image = new Image("cloud/cloudjump1left.png");
+			_x+=20;
 		}
 
 	}
@@ -225,6 +226,7 @@ public class CloudChar extends CharacterImpl {
 			_y -= 11;
 			_height = 70;
 			_width = 80;
+			_x+=20;
 			_attack3 = false;
 			_diving = false;
 			if (_facing.equals("right")) {
@@ -244,17 +246,20 @@ public class CloudChar extends CharacterImpl {
 			}
 			return;
 		}
-		if (_yvelocity >= 0 && !_diving && _counter >= 3) {
+		if (!_diving && _counter == 15) {
 			_width = 105;
 			_height = 60;
 			_xvelocity = 0;
+			int x;
 			if (_facing.equals("right")) {
 				_image = new Image("cloud/cloudjump2.png");
+				x=26;
 			} else {
 				_image = new Image("cloud/cloudjump2left.png");
 				_x -= 60;
+				x=0;
 			}
-			Hitbox attack = new CharLinkedHitbox("clouddive", this, 25, 25);
+			Hitbox attack = new OffsetHitbox("clouddive", this, _x+x, _y+36, 78, 12, 25, 25, _clear);
 			TheGame._attacks.add(attack);
 
 			_yvelocity = 10;

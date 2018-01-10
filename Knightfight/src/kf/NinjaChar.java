@@ -47,6 +47,7 @@ public class NinjaChar extends CharacterImpl {
 					_image = new Image("ninja/ninja.png");
 				}
 			
+			
 			} else {
 				if(_ducking) {
 					_image = new Image("ninja/duckleft.png");
@@ -54,6 +55,8 @@ public class NinjaChar extends CharacterImpl {
 					_image = new Image("ninja/ninjaleft.png");
 				}
 			}
+			TheGame.clearHitboxes("strike",	this);
+			TheGame.clearHitboxes("counterstrike",	this);
 			if(!_ducking) {
 			_width = 50;
 			_height = 50;
@@ -120,7 +123,7 @@ public class NinjaChar extends CharacterImpl {
 			}
 			
 		}
-		if(_counter == 6) {
+		if(_counter == 4) {
 			if(_facing.equals("right")) {
 				_image = new Image("ninja/shuriken2.png");
 				} else {
@@ -130,7 +133,7 @@ public class NinjaChar extends CharacterImpl {
 			_width = 74;
 			_height = 48;
 		}
-		if(_counter == 8) {
+		if(_counter == 5) {
 			if(_facing.equals("right")) {
 				_image = new Image("ninja/shuriken3.png");
 				} else {
@@ -140,7 +143,7 @@ public class NinjaChar extends CharacterImpl {
 			_width = 84;
 			_height = 50;
 		}
-		if(_counter == 10) {
+		if(_counter == 6) {
 			int d;
 			double v;
 			if(_facing.equals("right")) {
@@ -156,7 +159,7 @@ public class NinjaChar extends CharacterImpl {
 			TheGame._attacks.add(new HitboxImpl("shuriken", this, false, _x+d, _y+10, 40, 40, v, 0, 8, 14, new Image("ninja/shuriken.png")));
 			
 		}
-		if(_counter == 12) {
+		if(_counter == 7) {
 			if(_facing.equals("right")) {
 				_image = new Image("ninja/shuriken5.png");
 				} else {
@@ -166,14 +169,14 @@ public class NinjaChar extends CharacterImpl {
 			_width = 56;
 			_height = 56;
 		}
-		if(_counter == 14) {
+		if(_counter == 8) {
 			if(_facing.equals("right")) {
 				_image = new Image("ninja/shuriken6.png");
 				} else {
 				_image = new Image("ninja/shuriken6left.png");
 			}
 			}
-		if(_counter == 16) {
+		if(_counter == 9) {
 			if(_facing.equals("right")) {
 				_image = new Image("ninja/shuriken7.png");
 				} else {
@@ -181,7 +184,7 @@ public class NinjaChar extends CharacterImpl {
 				}
 			
 		}
-		if(_counter == 22) {
+		if(_counter == 14) {
 			_canact = true;
 			_attack1 = false;
 			_y += 6;
@@ -208,20 +211,23 @@ public class NinjaChar extends CharacterImpl {
 	
 	public void executeAttack2() {
 		if(_counter == 5) {
+			int x;
 			if(_facing.equals("right")) {
 				_image = new Image("ninja/strike2.png");
 				_xvelocity = 18;
 				_xtumbling = true;
+				x = 64;
 			} else {
 				_image = new Image("ninja/strike2left.png");
 				//_x-=36;
 				_xvelocity = -18;
 				_xtumbling = true;
+				x=0;
 			}
 			_width = 80;
 			_height = 50;
 			_y += 4;
-			TheGame._attacks.add(new CharLinkedHitbox("strike", this, 6, 16));
+			TheGame._attacks.add(new OffsetHitbox("strike", this, _x+x, _y+34, 16, 16, 8, 16, _clear));
 			
 		}
 		if(_xvelocity == 0 && _counter > 8) {
@@ -277,15 +283,18 @@ public class NinjaChar extends CharacterImpl {
 		if(_countercounter == 8) {
 			int d;
 			double v;
+			int x;
 			if(_otherchar.getX() > _x) {
 				_image = new Image("ninja/strike2left.png");
 				d = _otherchar.getX() + _otherchar.getWidth() + 6;
 				v = -24;
+				x = 0;
 				_facing = "left";
 			} else {
 				_image = new Image("ninja/strike2.png");
 				d = _otherchar.getX() - _width - 6;
 				v = 24;
+				x = 64;
 				_facing = "right";
 				
 			}
@@ -293,12 +302,16 @@ public class NinjaChar extends CharacterImpl {
 			
 			_width = 80;
 			_x = d;
-			_y = _otherchar.getY();
+			
+			if(_otherchar.isOnPlatform()) {
+				_y = 340;
+			} else {
+				_y = _otherchar.getY();
+			}
 			_xvelocity = v;
 			_xtumbling = true;
-			//_immune = false;
 			_countered = true;
-			TheGame._attacks.add(new CharLinkedHitbox("counterstrike", this, 24, 20));
+			TheGame._attacks.add(new OffsetHitbox("counterstrike", this, _x+x, _y+34, 16, 16, 24, 20, _clear));
 			
 		}
 		if(_countered && _xvelocity == 0) {

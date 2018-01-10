@@ -12,6 +12,7 @@ public class JadenChar extends CharacterImpl {
 	private boolean _attack1;
 	private boolean _attack2;
 	private boolean _attack3;
+	private int _cd1;
 	private ExplodingHitbox _fireball = new ExplodingHitbox("expfireball", this, false, 0, 0, 0, 0, 0, 0, 0, 0, new Image("gengar/gunk1.png"), new MeleeHitbox("gunk2", this, 0, 0, 64, 60, 25, 25));
 	private int _fireballcounter;
 	private boolean _fireballex = false;
@@ -93,8 +94,9 @@ public class JadenChar extends CharacterImpl {
 
 	@Override
 	public void attack1() {
-		if(!_attack3){
+		if(!_attack3 && _cd1 == 0){
 		_counter = 0;
+		_cd1 = 40;
 		_xvelocity = 0;
 		_gravity = true;
 		_canact = false;
@@ -936,6 +938,9 @@ public class JadenChar extends CharacterImpl {
 	public void incrementCounter() {
 		super.incrementCounter();
 		_fireballcounter++;
+		if(_cd1 > 0) {
+			_cd1--;
+		}
 	}
 	
 	@Override

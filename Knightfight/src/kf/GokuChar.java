@@ -16,6 +16,8 @@ public class GokuChar extends CharacterImpl {
 	private int _cd2;
 	private int _cd3;
 	private int _ucounter;
+	// checks if the punch hitbox is gone
+	boolean _punchgone = true;
 
 	public GokuChar(String ID) {
 		super(ID);
@@ -146,44 +148,43 @@ public class GokuChar extends CharacterImpl {
 			_width = 70;
 			_height = 70;
 			if (!_attacku) {
+				int x;
 				if (_facing.equals("right")) {
 					_image = new Image("goku/punch2.png");
 					_xvelocity = 20;
+					x=50;
 				} else {
 					_image = new Image("goku/punch2left.png");
 					_xvelocity = -20;
+					x=0;
 				}
-				Hitbox attack = new CharLinkedHitbox("gokupunch", this, 27, 16);
+				Hitbox attack = new OffsetHitbox("gokupunch", this, _x+x, _y+32, 22, 6, 27, 16, _clear);
 				_xtumbling = true;
 				TheGame._attacks.add(attack);
 			} else {
+				int x;
 				if (_facing.equals("right")) {
 					_image = new Image("goku/upunch2.png");
 					_xvelocity = 40;
+					x=50;
 				} else {
 					_image = new Image("goku/upunch2left.png");
 					_xvelocity = -40;
+					x=0;
 				}
-				Hitbox attack = new CharLinkedHitbox("gokupunch", this, 50, 50);
+				Hitbox attack = new OffsetHitbox("gokupunch", this, _x+x, _y+32, 22, 6, 50, 50, _clear);
 				_xtumbling = true;
 				TheGame._attacks.add(attack);
 			}
 		}
+		
+		
 		if (_counter == 28) {
 
 			_width = 50;
 			_attack1 = false;
 			_canact = true;
-			List<Hitbox> remove = new ArrayList<Hitbox>();
-			for (Hitbox a : TheGame._attacks) {
-				if (a.getID().equals("gokupunch") && a.getCharacter().equals(this)) {
-					remove.add(a);
-				}
-				// s System.out.println(a);
-			}
-			for (Hitbox a : remove) {
-				TheGame._attacks.remove(a);
-			}
+			TheGame.clearHitboxes("gokupunch", this);
 		}
 	}
 

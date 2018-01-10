@@ -12,6 +12,9 @@ public class FrankChar extends CharacterImpl {
 	private boolean _attack2;
 	private boolean _attack3;
 	private boolean _canattack3;
+	private int _cd1;
+	//counts how many shots from attack1 have been shot between cooldowns
+	private int _timesshot = 0;
 	
 	
 	public FrankChar(String ID) {
@@ -65,14 +68,13 @@ public class FrankChar extends CharacterImpl {
 	@Override
 	public void attack1() {
 		
-		int i = 0;
-		for (Hitbox a : TheGame._attacks) {
-			if (a.getID().equals("pellet")  && a.getCharacter().equals(this)) {
-				i++;
-			}
-			
-		}
-		if(i < 2){
+		if(_cd1 == 0){
+			if(_timesshot == 0) {
+				_timesshot = 1;
+			} else if(_timesshot == 1) {
+				_timesshot = 0;
+				_cd1 = 18;
+			} 
 			_attack1 = true;
 			_width = 75;
 			_counter = 0;
@@ -123,15 +125,17 @@ public class FrankChar extends CharacterImpl {
 	public void executeAttack2() {
 		if(_counter == 10) {
 			_width = 75;
+			int x;
 			if(_facing.equals("right")) {
 				_xvelocity = 14;
 				_image = new Image("frank/punch2.gif");
+				x=51;
 			} else {
-				
 				_xvelocity = -14;
 				_image = new Image("frank/punch2left.gif");
+				x=0;
 			}
-			TheGame._attacks.add(new CharLinkedHitbox("bluepunch", this, 20, 15));
+			TheGame._attacks.add(new OffsetHitbox("bluepunch", this, _x+x, _y+18, 21, 14, 20, 15, _clear));
 			_xtumbling = true;
 			
 		}
@@ -332,6 +336,14 @@ public class FrankChar extends CharacterImpl {
 			super.pressRight();
 		} else {
 			_xvelocity = 4.5;
+		}
+	}
+	
+	@Override
+	public void incrementCounter() {
+		super.incrementCounter();
+		if(_cd1 > 0) {
+			_cd1--;
 		}
 	}
 

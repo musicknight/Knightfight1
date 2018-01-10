@@ -216,7 +216,7 @@ public class ShovelChar extends CharacterImpl {
 				List<Hitbox> remove = new ArrayList<Hitbox>();
 				for (Hitbox a : TheGame._attacks) {
 					if (a.getID().equals("shovel") && a.getCharacter().equals(this)) {
-						TheGame._attacks.remove(a);
+						remove.add(a);
 					}
 					// s System.out.println(a);
 				}

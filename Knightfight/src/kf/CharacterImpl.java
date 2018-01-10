@@ -34,7 +34,12 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 	protected boolean _gravity = true;
 	//means this char should be rendered on top
 	protected boolean _haspriority = false;
+	//true = getX() is left x coordinate false = getX() is right x coordinate
+	protected boolean _getxleft = true;
 	private int _lives = 3;
+	protected Image _clear = new Image("clear.png");
+	protected int _restingwidth;
+	protected int _restingheight;
 
 	public CharacterImpl(String ID) {
 		super(0, 300, ID);
@@ -56,7 +61,6 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 
 	@Override
 	public void render(GraphicsContext gc) {
-
 		gc.drawImage(_image, _x, _y, _width, _height);
 		if (_ID.equals("one")) {
 			gc.setFont(Font.font("Arial", 20));
@@ -148,24 +152,29 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 				_ytumbling = false;
 			}
 		}
-		if ((_x + 50 + _xvelocity < 900 && _x - 3 + _xvelocity > 0)) {
+		if ((_x + _width + _xvelocity < 900 && _x - 3 + _xvelocity > 0)) {
 			if (!(_y > 400 - _height && (_x + _xvelocity > 150 - _width && _x + _xvelocity < 750))) {
 				_x += _xvelocity;
 
 			}
 		}
-		if ((_x > 150 - _width && _x < 750 && _y + _yvelocity > 400 - _height)) {
+		
+		if ((_x > 150 - _width && _x < 750 && _y > 400 - _height)) {
+			_y+=_yvelocity;
+
+	} else if ((_x > 150 - _width && _x < 750 && _y + _yvelocity > 400 - _height)) {
 			_onplatform = true;
 			_yvelocity = 0;
 			_canjump1 = true;
 			_canjump2 = true;
 		} else {
 			_onplatform = false;
-
-		}
-		if (!_onplatform) {
 			_y += _yvelocity;
 		}
+		
+		
+		
+	
 	}
 
 	public void jump1() {
@@ -444,4 +453,14 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 	public boolean isHasPriority() {
 		return _haspriority;
 	}
+	
+	@Override
+	public int getX() {
+		if(_getxleft) {
+			return _x;
+		} else {
+			return _x+_width;
+		}
+	}
+	
 }

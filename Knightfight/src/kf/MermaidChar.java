@@ -77,6 +77,7 @@ public class MermaidChar extends CharacterImpl {
 		} else {
 			_image = new Image("mermaid/bubble1left.png");
 		}
+		TheGame.playSound("/mermaid/sounds/mermaid1.wav");
 	}
 
 	public void executeAttack1() {
@@ -168,6 +169,7 @@ public class MermaidChar extends CharacterImpl {
 			}
 			Hitbox attack = new CharLinkedHitbox("flail", this, 33, 16);
 			TheGame._attacks.add(attack);
+			TheGame.playSound("/mermaid/sounds/mermaid2.wav");
 		}
 		if (_counter == 24) {
 			if (_facing.equals("left")) {
@@ -221,6 +223,7 @@ public class MermaidChar extends CharacterImpl {
 			}
 			attack.setHOrientation(true);
 			TheGame._attacks.add(attack);
+			TheGame.playSound("/mermaid/sounds/mermaid3.wav");
 		}
 		if (_counter == 27) {
 			_canact = true;
@@ -261,6 +264,7 @@ public class MermaidChar extends CharacterImpl {
 
 					}
 					toadd.add(attack);
+					
 					break;
 
 				}
@@ -304,9 +308,10 @@ public class MermaidChar extends CharacterImpl {
 			}
 			Hitbox attack = new CharLinkedHitbox("wave", this, 70, 70);
 			TheGame._attacks.add(attack);
+			TheGame.playSound("/mermaid/sounds/mermaid4.wav");
 		}
 	if(_facing.equals("right")){
-		if(_x >= 600) {
+		if(_x >= 600 || _counter == 50) {
 			List<Hitbox> remove = new ArrayList<Hitbox>();
 			for (Hitbox a : TheGame._attacks) {
 				if (a.getID().equals("wave") && a.getCharacter().equals(this)) {
@@ -327,7 +332,7 @@ public class MermaidChar extends CharacterImpl {
 			
 		}
 		} else {
-			if(_x <= 100) {
+			if(_x <= 100 || _counter == 50) {
 				List<Hitbox> remove = new ArrayList<Hitbox>();
 				for (Hitbox a : TheGame._attacks) {
 					if (a.getID().equals("wave") && a.getCharacter().equals(this)) {

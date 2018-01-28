@@ -70,6 +70,7 @@ public class JadenChar extends CharacterImpl {
 			_fireball.explode();
 			_fireballcounter = 0;
 			_fireballex = false;
+			TheGame.playSound("/jaden/sounds/jaden3.wav");
 		}
 		if(_fireballcounter == 30) {
 			List<Hitbox> remove = new ArrayList<Hitbox>();
@@ -109,6 +110,7 @@ public class JadenChar extends CharacterImpl {
 		} else {
 			_image = new Image("jaden/spin1left.gif");
 		}
+		TheGame.playSound("/jaden/sounds/jaden1.wav");
 	}
 	}
 	
@@ -195,6 +197,7 @@ public class JadenChar extends CharacterImpl {
 			_fireball = new ExplodingHitbox("expfireball", this, false, _x+d, _y+15, 32, 32, v, 0, 0, 0, new Image("jaden/fire1.png"), exp);
 			TheGame._attacks.add(_fireball);
 			_fireballex = true;
+			TheGame.playSound("/jaden/sounds/jaden2.wav");
 		}
 		if(_counter == 16) {
 			_width = 60;
@@ -265,7 +268,7 @@ public class JadenChar extends CharacterImpl {
 		if(_counter == 34) {
 			_attack1 = false;
 			_canact = true;
-			_y-=3;
+			_y-=4;
 		}
 	}
 
@@ -283,6 +286,7 @@ public class JadenChar extends CharacterImpl {
 		_attack2 = true;
 		TheGame._attacks.add(new CharLinkedHitbox("flamedive", this, 22, 14));
 		}
+		TheGame.playSound("/jaden/sounds/jaden4.wav");
 	}
 	public void executeAttack2() {
 		if(_onplatform && !_haslanded) {
@@ -335,7 +339,9 @@ public class JadenChar extends CharacterImpl {
 		_width = 48;
 		_height = 51;
 		TheGame._attacks.add(new HitboxImpl("jumpfire", this, false, _x+d, _y+30, 40, 40, v, 10, 15, 15, i));
+		TheGame.playSound("/jaden/sounds/jaden2.wav");
 		}
+	
 	}
 	
 	
@@ -395,12 +401,17 @@ public class JadenChar extends CharacterImpl {
 			_image = new Image("jaden/spin1left.gif");
 		}
 		}
+		TheGame.playSound("/jaden/sounds/jaden1.wav");
 		
 	}
 	
 	public void executeAttackU() {
 		Random r = new Random();
 		Hitbox attack = new HitboxImpl("meteor", this, false, r.nextInt(830), -109,68, 109, 0, 7, 30, 30, new Image("jaden/meteor.gif"));
+		if(_counter % 8 == 0 && _counter <= 136) {
+			TheGame.playSound("/jaden/sounds/jaden2.wav");
+		}
+		
 		if(_counter == 2) {
 			_width = 45;
 			if(_facing.equals("right")) {

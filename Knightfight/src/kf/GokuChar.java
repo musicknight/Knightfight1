@@ -80,6 +80,7 @@ public class GokuChar extends CharacterImpl {
 			}
 			TheGame._gc.drawImage(new Image("goku/kame.png"), x + 26, 160, 25, 25);
 		}
+		
 	}
 
 	@Override
@@ -112,6 +113,7 @@ public class GokuChar extends CharacterImpl {
 					_image = new Image("goku/upunch1left.png");
 				}
 			}
+			TheGame.playSound("/goku/sounds/goku1.wav");
 		}
 
 	}
@@ -147,6 +149,7 @@ public class GokuChar extends CharacterImpl {
 			_y += 29;
 			_width = 70;
 			_height = 70;
+			
 			if (!_attacku) {
 				int x;
 				if (_facing.equals("right")) {
@@ -158,7 +161,7 @@ public class GokuChar extends CharacterImpl {
 					_xvelocity = -20;
 					x=0;
 				}
-				Hitbox attack = new OffsetHitbox("gokupunch", this, _x+x, _y+32, 22, 6, 27, 16, _clear);
+				Hitbox attack = new OffsetHitbox("gokupunch", this, x, 32, 22, 6, 27, 16, _clear);
 				_xtumbling = true;
 				TheGame._attacks.add(attack);
 			} else {
@@ -172,10 +175,15 @@ public class GokuChar extends CharacterImpl {
 					_xvelocity = -40;
 					x=0;
 				}
-				Hitbox attack = new OffsetHitbox("gokupunch", this, _x+x, _y+32, 22, 6, 50, 50, _clear);
+				Hitbox attack = new OffsetHitbox("gokupunch", this, x, 32, 22, 6, 50, 50, _clear);
 				_xtumbling = true;
 				TheGame._attacks.add(attack);
+				
 			}
+			
+		}
+		if(_counter == 12) {
+			TheGame.playSound("/goku/sounds/goku2.wav");
 		}
 		
 		
@@ -198,6 +206,7 @@ public class GokuChar extends CharacterImpl {
 			_counter = 0;
 			_image = new Image("goku/vanish1.png");
 			_cd2 = 100;
+			TheGame.playSound("/goku/sounds/goku3.wav");
 		}
 
 	}
@@ -241,6 +250,7 @@ public class GokuChar extends CharacterImpl {
 					_image = new Image("goku/ucharge1left.png");
 				}
 			}
+			TheGame.playSound("/goku/sounds/goku4.wav");
 		}
 
 	}
@@ -253,69 +263,182 @@ public class GokuChar extends CharacterImpl {
 			if (!_attacku) {
 				if (_facing.equals("right")) {
 					_image = new Image("goku/charge2.png");
-					attack = new MeleeHitbox("kamehameha", this, _x + 50, _y - 15, 500, 100, 10, 2,
-							new Image("goku/kamehameha.png"));
+					attack = new MeleeHitbox("kamehameha1", this, _x + 50, _y - 15, 246, 100, 10, 1,
+							new Image("goku/kamehameha1.png"));
 				} else {
 					_image = new Image("goku/charge2left.png");
-					attack = new MeleeHitbox("kamehameha", this, _x - 500, _y - 15, 500, 100, 10, 2,
-							new Image("goku/kamehamehaleft.png"));
+					attack = new MeleeHitbox("kamehameha1", this, _x - 246, _y - 15, 246, 100, 10, 1,
+							new Image("goku/kamehameha1left.png"));
 				}
 				attack.setDissappearOnHit(false);
 				TheGame._attacks.add(attack);
 			} else {
 				if (_facing.equals("right")) {
 					_image = new Image("goku/ucharge2.png");
-					attack = new MeleeHitbox("kamehameha", this, _x + 50, _y - 15, 500, 100, 18, 3,
-							new Image("goku/ukamehameha.png"));
+					attack = new MeleeHitbox("kamehameha1", this, _x + 50, _y - 15, 246, 100, 18, 3,
+							new Image("goku/ukamehameha1.png"));
 				} else {
 					_image = new Image("goku/ucharge2left.png");
-					attack = new MeleeHitbox("kamehameha", this, _x - 500, _y - 15, 500, 100, 18, 3,
-							new Image("goku/ukamehamehaleft.png"));
+					attack = new MeleeHitbox("kamehameha1", this, _x - 246, _y - 15, 246, 100, 18, 3,
+							new Image("goku/ukamehameha1left.png"));
 				}
 				attack.setDissappearOnHit(false);
 				TheGame._attacks.add(attack);
 			}
 		}
-		if (_counter == 49) {
+		if(_counter == 27) {
 			Hitbox attack;
 			if (!_attacku) {
 				if (_facing.equals("right")) {
 					_image = new Image("goku/charge2.png");
-					attack = new MeleeHitbox("kamehameha", this, _x + 50, _y - 15, 500, 100, 20, 2,
-							new Image("goku/kamehameha.png"));
+					attack = new MeleeHitbox("kamehameha2", this, _x + 50, _y - 15, 300, 100, 10, 1,
+							new Image("goku/kamehameha2.png"));
 				} else {
 					_image = new Image("goku/charge2left.png");
-					attack = new MeleeHitbox("kamehameha", this, _x - 500, _y - 15, 500, 100, 20, 2,
-							new Image("goku/kamehamehaleft.png"));
+					attack = new MeleeHitbox("kamehameha2", this, _x - 300, _y - 15, 300, 100, 10, 1,
+							new Image("goku/kamehameha2left.png"));
+				}
+				TheGame.clearHitboxes("kamehameha1", this);
+				attack.setDissappearOnHit(false);
+				TheGame._attacks.add(attack);
+			} else {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/ucharge2.png");
+					attack = new MeleeHitbox("kamehameha2", this, _x + 50, _y - 15, 300, 100, 18, 3,
+							new Image("goku/ukamehameha2.png"));
+				} else {
+					_image = new Image("goku/ucharge2left.png");
+					attack = new MeleeHitbox("kamehameha2", this, _x - 300, _y - 15, 300, 100, 18, 3,
+							new Image("goku/ukamehameha2left.png"));
+				}
+				TheGame.clearHitboxes("kamehameha1", this);
+				attack.setDissappearOnHit(false);
+				TheGame._attacks.add(attack);
+			}
+		}
+		if(_counter == 29) {
+			Hitbox attack;
+			if (!_attacku) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/charge2.png");
+					attack = new MeleeHitbox("kamehameha3", this, _x + 50, _y - 15, 360, 100, 10, 1,
+							new Image("goku/kamehameha3.png"));
+				} else {
+					_image = new Image("goku/charge2left.png");
+					attack = new MeleeHitbox("kamehameha3", this, _x - 360, _y - 15, 360, 100, 10, 1,
+							new Image("goku/kamehameha3left.png"));
+				}
+				TheGame.clearHitboxes("kamehameha2", this);
+				attack.setDissappearOnHit(false);
+				TheGame._attacks.add(attack);
+			} else {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/ucharge2.png");
+					attack = new MeleeHitbox("kamehameha3", this, _x + 50, _y - 15, 360, 100, 18, 3,
+							new Image("goku/ukamehameha3.png"));
+				} else {
+					_image = new Image("goku/ucharge2left.png");
+					attack = new MeleeHitbox("kamehameha3", this, _x - 360, _y - 15, 360, 100, 18, 3,
+							new Image("goku/ukamehameha3left.png"));
+				}
+				TheGame.clearHitboxes("kamehameha2", this);
+				attack.setDissappearOnHit(false);
+				TheGame._attacks.add(attack);
+			}
+		}
+		if(_counter == 31) {
+			Hitbox attack;
+			if (!_attacku) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/charge2.png");
+					attack = new MeleeHitbox("kamehameha4", this, _x + 50, _y - 15, 418, 100, 10, 1,
+							new Image("goku/kamehameha4.png"));
+				} else {
+					_image = new Image("goku/charge2left.png");
+					attack = new MeleeHitbox("kamehameha4", this, _x - 418, _y - 15, 418, 100, 10, 1,
+							new Image("goku/kamehameha4left.png"));
+				}
+				TheGame.clearHitboxes("kamehameha3", this);
+				attack.setDissappearOnHit(false);
+				TheGame._attacks.add(attack);
+			} else {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/ucharge2.png");
+					attack = new MeleeHitbox("kamehameha4", this, _x + 50, _y - 15, 418, 100, 18, 3,
+							new Image("goku/ukamehameha4.png"));
+				} else {
+					_image = new Image("goku/ucharge2left.png");
+					attack = new MeleeHitbox("kamehameha4", this, _x - 418, _y - 15, 418, 100, 18, 3,
+							new Image("goku/ukamehameha4left.png"));
+				}
+				TheGame.clearHitboxes("kamehameha3", this);
+				attack.setDissappearOnHit(false);
+				TheGame._attacks.add(attack);
+			}
+		}
+		if(_counter == 33) {
+			Hitbox attack;
+			if (!_attacku) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/charge2.png");
+					attack = new MeleeHitbox("kamehameha5", this, _x + 50, _y - 15, 506, 100, 10, 1.5,
+							new Image("goku/kamehameha5.png"));
+				} else {
+					_image = new Image("goku/charge2left.png");
+					attack = new MeleeHitbox("kamehameha5", this, _x - 506, _y - 15, 506, 100, 10, 1.5,
+							new Image("goku/kamehameha5left.png"));
+				}
+				TheGame.clearHitboxes("kamehameha4", this);
+				attack.setDissappearOnHit(false);
+				TheGame._attacks.add(attack);
+			} else {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/ucharge2.png");
+					attack = new MeleeHitbox("kamehameha5", this, _x + 50, _y - 15, 506, 100, 18, 3,
+							new Image("goku/ukamehameha5.png"));
+				} else {
+					_image = new Image("goku/ucharge2left.png");
+					attack = new MeleeHitbox("kamehameha5", this, _x - 506, _y - 15, 506, 100, 18, 3,
+							new Image("goku/ukamehameha5left.png"));
+				}
+				TheGame.clearHitboxes("kamehameha4", this);
+				attack.setDissappearOnHit(false);
+				TheGame._attacks.add(attack);
+			}
+		}
+		if (_counter == 60) {
+			Hitbox attack;
+			if (!_attacku) {
+				if (_facing.equals("right")) {
+					_image = new Image("goku/charge2.png");
+					attack = new MeleeHitbox("kamehameha", this, _x + 50, _y - 15, 506, 100, 20, 2,
+							new Image("goku/kamehameha5.png"));
+				} else {
+					_image = new Image("goku/charge2left.png");
+					attack = new MeleeHitbox("kamehameha", this, _x - 506, _y - 15, 506, 100, 20, 2,
+							new Image("goku/kamehameha5left.png"));
+					TheGame.clearHitboxes("kamehameha5", this);
 					TheGame._attacks.add(attack);
 				}
 			} else {
 				if (_facing.equals("right")) {
 					_image = new Image("goku/ucharge2.png");
 					attack = new MeleeHitbox("kamehameha", this, _x + 50, _y - 15, 500, 100, 20, 2,
-							new Image("goku/ukamehameha.png"));
+							new Image("goku/ukamehameha5.png"));
 				} else {
 					_image = new Image("goku/ucharge2left.png");
 					attack = new MeleeHitbox("kamehameha", this, _x - 500, _y - 15, 500, 100, 20, 2,
-							new Image("goku/ukamehamehaleft.png"));
+							new Image("goku/ukamehameha5left.png"));
+					TheGame.clearHitboxes("kamehameha5", this);
 					TheGame._attacks.add(attack);
 				}
 			}
 		}
 
-		if (_counter == 50) {
+		if (_counter == 61) {
 
-			List<Hitbox> remove = new ArrayList<Hitbox>();
-			for (Hitbox a : TheGame._attacks) {
-				if (a.getID().equals("kamehameha") && a.getCharacter().equals(this)) {
-					remove.add(a);
-				}
-				// s System.out.println(a);
-			}
-			for (Hitbox a : remove) {
-				TheGame._attacks.remove(a);
-
-			}
+			TheGame.clearHitboxes("kamehameha", this);
+			TheGame.clearHitboxes("kamehameha5", this);
 			_attack3 = false;
 			_canact = true;
 
@@ -342,6 +465,7 @@ public class GokuChar extends CharacterImpl {
 			} else {
 				_image = new Image("goku/ultleft.png");
 			}
+			TheGame.playSound("/goku/sounds/gokuu.wav");
 		}
 	}
 

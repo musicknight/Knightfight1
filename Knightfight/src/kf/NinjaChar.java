@@ -157,7 +157,7 @@ public class NinjaChar extends CharacterImpl {
 				}
 			_width = 54;
 			TheGame._attacks.add(new HitboxImpl("shuriken", this, false, _x+d, _y+10, 40, 40, v, 0, 8, 14, new Image("ninja/shuriken.png")));
-			
+			TheGame.playSound("/ninja/sounds/ninja1.wav");
 		}
 		if(_counter == 7) {
 			if(_facing.equals("right")) {
@@ -228,7 +228,7 @@ public class NinjaChar extends CharacterImpl {
 			_height = 50;
 			_y += 4;
 			TheGame._attacks.add(new OffsetHitbox("strike", this, _x+x, _y+34, 16, 16, 8, 16, _clear));
-			
+			TheGame.playSound("/ninja/sounds/ninja2.wav");
 		}
 		if(_xvelocity == 0 && _counter > 8) {
 			_attack2 = false;
@@ -275,6 +275,7 @@ public class NinjaChar extends CharacterImpl {
 			_countercounter = 0;
 			_poofed = true;
 			_dodged = false;
+			TheGame.playSound("/ninja/sounds/ninja3.wav");
 		}
 		
 		if(!_countered) {
@@ -312,7 +313,7 @@ public class NinjaChar extends CharacterImpl {
 			_xtumbling = true;
 			_countered = true;
 			TheGame._attacks.add(new OffsetHitbox("counterstrike", this, _x+x, _y+34, 16, 16, 24, 20, _clear));
-			
+			TheGame.playSound("/ninja/sounds/ninja2.wav");
 		}
 		if(_countered && _xvelocity == 0) {
 			_canact = true;
@@ -329,7 +330,7 @@ public class NinjaChar extends CharacterImpl {
 
 	@Override
 	public void attackU() {
-		if(_ultcharge >= 150) {
+		if(_ultcharge >= 0) {
 		_xvelocity = 0;
 		_canact = false;
 		_counter = 0;
@@ -389,10 +390,17 @@ public class NinjaChar extends CharacterImpl {
 		if(_ultcounter >= 25 && _ultcounter < 30) {
 			TheGame._gc.drawImage(new Image("ninja/slice1.png"), x, y, 80, 80);
 			_otherchar.setDamage(_otherchar.getDamage() + 2);
+			if(_ultcounter % 5 == 0) {
+				TheGame.playSound("/ninja/sounds/ninja2.wav");
+			}
+		}
+		if(_ultcounter % 5 == 0 && _ultcounter >= 30 && _ultcounter < 145) {
+			TheGame.playSound("/ninja/sounds/ninja2.wav");
 		}
 		if(_ultcounter >= 30 && _ultcounter < 35) {
 			TheGame._gc.drawImage(new Image("ninja/slice2.png"), x, y, 80, 80);
 			_otherchar.setDamage(_otherchar.getDamage() + 2);
+			
 		}
 		if(_ultcounter >= 36 && _ultcounter < 40) {
 			TheGame._gc.drawImage(new Image("ninja/slice3.png"), x, y, 80, 80);
@@ -501,6 +509,7 @@ public class NinjaChar extends CharacterImpl {
 			_ultstarted = false;
 			_haspriority = false;
 			_otherchar.setCanAct(true);
+			TheGame.playSound("/ninja/sounds/ninja2.wav");
 		}
 		if(_counter > 5 && _xvelocity == 0 && !_ulting) {
 			_attacku = false;

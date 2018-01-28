@@ -46,6 +46,8 @@ public interface Hitbox extends Entity {
 	
 	public void setY(int y);
 	
+	public boolean isSetKnockback();
 	
+	public void setSetKnockback(boolean b);
 
 }

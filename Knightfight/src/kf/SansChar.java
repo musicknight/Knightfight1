@@ -14,7 +14,7 @@ public class SansChar extends CharacterImpl {
 
 	public SansChar(String ID) {
 		super(ID);
-		_image = new Image("sans.jpg");
+		_image = new Image("sans.png");
 		_width = 50;
 		_height = 75;
 		_damagefactor = .9;
@@ -63,6 +63,8 @@ public class SansChar extends CharacterImpl {
 			}
 		}
 		TheGame._attacks.add(attack);
+		TheGame.playSound("/sounds/sans1.wav");
+				
 
 	}
 
@@ -140,6 +142,7 @@ public class SansChar extends CharacterImpl {
 		_counter = 0;
 		_attack3 = true;
 		_image = new Image("charge.png");
+		TheGame.playSound("/sounds/sans3.wav");
 
 	}
 
@@ -151,7 +154,7 @@ public class SansChar extends CharacterImpl {
 				_xvelocity = 0;
 			}
 			if (_xtumbling) {
-				_image = new Image("sans.jpg");
+				_image = new Image("sans.png");
 				_width = 50;
 
 				List<Hitbox> remove = new ArrayList<Hitbox>();
@@ -219,7 +222,7 @@ public class SansChar extends CharacterImpl {
 				_canact = true;
 				_attack3 = false;
 				_width = 50;
-				_image = new Image("sans.jpg");
+				_image = new Image("sans.png");
 			}
 
 		}
@@ -240,6 +243,7 @@ public class SansChar extends CharacterImpl {
 			} else {
 				_image = new Image("gasterleft.png");
 			}
+			TheGame.playSound("/sounds/sans3.wav");
 		}
 
 	}
@@ -342,7 +346,7 @@ public class SansChar extends CharacterImpl {
 		if (_counter == 100) {
 			_canact = true;
 			_attacku = false;
-			_image = new Image("sans.jpg");
+			_image = new Image("sans.png");
 			_width = 50;
 			_height = 75;
 			_immune = false;
@@ -359,7 +363,7 @@ public class SansChar extends CharacterImpl {
 
 	@Override
 	public Image getStockImage() {
-		return new Image("sansstock.jpg");
+		return new Image("sansstock.png");
 	}
 
 	@Override
@@ -369,7 +373,7 @@ public class SansChar extends CharacterImpl {
 		_attack3 = false;
 		super.respawn();
 		_canact = true;
-		_image = new Image("sans.jpg");
+		_image = new Image("sans.png");
 		_width = 50;
 		_height = 75;
 	}

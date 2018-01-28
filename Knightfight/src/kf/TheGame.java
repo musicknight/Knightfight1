@@ -1,10 +1,20 @@
 package kf;
 
+import java.io.IOException;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -23,6 +33,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import javazoom.jlgui.basicplayer.BasicPlayer;
+import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 public class TheGame extends Application {
 	public static void main(String[] args) {
@@ -38,11 +54,14 @@ public class TheGame extends Application {
 	private Stage _stage;
 	private Scene _scene;
 	private AnimationTimer _animationTimer;
-	private Platform _platform = new PlatformImpl();
 	public static Set<Hitbox> _attacks = new HashSet<Hitbox>();
+	public static Set<Backdrop> _backdrops = new HashSet<Backdrop>();
+	public static List<Platform> _platforms = new ArrayList<Platform>();
 	private boolean _gamestarted = false;
 	private boolean _player1picked = false;
 	private boolean _player2picked = false;
+	private boolean _stageselected = false;
+	//character buttons
 	private Button _whiteboxselect = new Button("select");
 	private Button _yellowboxselect = new Button("select");
 	private Button _sansselect = new Button("select");
@@ -55,13 +74,23 @@ public class TheGame extends Application {
 	private Button _jadenselect = new Button("select");
 	private Button _ninjaselect = new Button("select");
 	private Button _zeroselect = new Button("select");
+	//stage buttons
+	private Button _emeraldselect = new Button("select");
+	private Button _moonselect = new Button("select");
+	private Button _finalselect = new Button("select");
+	private Button _giygasselect = new Button("select");
+	private Button _shovelfselect = new Button("select");
 	private Group _root1 = new Group();
 	public static boolean _rendering = true;
+	
+	private static AudioInputStream _stagemusic =  null;
 
 	private Button _replaybutton = new Button();
 	// public static Set<PreHitbox> _preattacks = new HashSet<PreHitbox>();
 
 	private double _gravity = 0.8;
+	
+	private static BasicPlayer _player = new BasicPlayer();
 
 	public void start(Stage stage1) {
 		// FXMLLoader loader = new
@@ -70,6 +99,7 @@ public class TheGame extends Application {
 		stage1.setTitle("Knightfight");
 		_stage = stage1;
 		TheGame m = this;
+		_stage.setOnCloseRequest(m::closeWindow);
 		_root1 = new Group();
 		_scene = new Scene(_root1);
 		_scene.setFill(Color.BLACK);
@@ -134,7 +164,7 @@ public class TheGame extends Application {
 					}
 					// sans
 					_gc.setFill(Color.WHITE);
-					_gc.drawImage(new Image("sans.jpg"), 400, 200, 50, 50);
+					_gc.drawImage(new Image("sans.png"), 400, 200, 50, 50);
 					_gc.setFont(Font.font("Comic Sans MS", 20));
 					_gc.fillText("sans", 405, 190);
 					if (!_root1.getChildren().contains(_sansselect)) {
@@ -266,7 +296,7 @@ public class TheGame extends Application {
 					_gc.fillText("ninja kirby", 228, 190);
 					// sans
 					_gc.setFill(Color.WHITE);
-					_gc.drawImage(new Image("sans.jpg"), 400, 200, 50, 50);
+					_gc.drawImage(new Image("sans.png"), 400, 200, 50, 50);
 					_gc.setFont(Font.font("Comic Sans MS", 20));
 					_gc.fillText("sans", 405, 190);
 					// shovel
@@ -304,9 +334,7 @@ public class TheGame extends Application {
 					_gc.drawImage(new Image("jaden/jaden.gif"), 700, 400, 50, 50);
 					_gc.setFont(Font.font("Arial", 20));
 					_gc.fillText("jaden", 703, 390);
-				} else {
-					_character1.setOtherChar(_character2);
-					_character2.setOtherChar(_character1);
+				} else if (!_stageselected) {
 					_root1.getChildren().remove(_whiteboxselect);
 					_root1.getChildren().remove(_yellowboxselect);
 					_root1.getChildren().remove(_sansselect);
@@ -319,7 +347,88 @@ public class TheGame extends Application {
 					_root1.getChildren().remove(_jadenselect);
 					_root1.getChildren().remove(_ninjaselect);
 					_root1.getChildren().remove(_zeroselect);
-					_platform.render(_gc);
+					_gc.setFill(Color.RED);
+					_gc.setFont(Font.font("Arial Black", 40));
+					_gc.fillText("SELECT A STAGE", 20, 60);
+					// emerald
+					_gc.setFill(Color.GREEN);
+					_gc.setFont(Font.font("Arial", 20));
+					_gc.fillText("Emerald Cave", 100, 200);
+					if (!_root1.getChildren().contains(_emeraldselect)) {
+						_emeraldselect.setMinWidth(50);
+						_emeraldselect.setMinHeight(25);
+						_emeraldselect.setLayoutX(140);
+						_emeraldselect.setLayoutY(210);
+						_root1.getChildren().add(_emeraldselect);
+
+						_emeraldselect.setOnMousePressed(m::handleButtonPress);
+					}
+					// moon
+					_gc.setFill(Color.GRAY);
+					_gc.setFont(Font.font("Arial", 20));
+					_gc.fillText("Moon", 340, 200);
+					if (!_root1.getChildren().contains(_moonselect)) {
+						_moonselect.setMinWidth(50);
+						_moonselect.setMinHeight(25);
+						_moonselect.setLayoutX(340);
+						_moonselect.setLayoutY(210);
+						_root1.getChildren().add(_moonselect);
+
+						_moonselect.setOnMousePressed(m::handleButtonPress);
+					}
+					// final destination
+					_gc.setFill(Color.PURPLE);
+					_gc.setFont(Font.font("Arial", 20));
+					_gc.fillText("Final Destination", 490, 200);
+					if (!_root1.getChildren().contains(_finalselect)) {
+						_finalselect.setMinWidth(50);
+						_finalselect.setMinHeight(25);
+						_finalselect.setLayoutX(540);
+						_finalselect.setLayoutY(210);
+						_root1.getChildren().add(_finalselect);
+
+						_finalselect.setOnMousePressed(m::handleButtonPress);
+					}
+					// giygas
+					_gc.setFill(Color.DARKRED);
+					_gc.setFont(Font.font("Arial", 20));
+					_gc.fillText("Giygas' Dimension", 680, 200);
+					if (!_root1.getChildren().contains(_giygasselect)) {
+						_giygasselect.setMinWidth(50);
+						_giygasselect.setMinHeight(25);
+						_giygasselect.setLayoutX(740);
+						_giygasselect.setLayoutY(210);
+						_root1.getChildren().add(_giygasselect);
+
+						_giygasselect.setOnMousePressed(m::handleButtonPress);
+					}
+					// shovel knight's camp
+					_gc.setFill(Color.DARKGREEN);
+					_gc.setFont(Font.font("Arial", 20));
+					_gc.fillText("Shovel Knight's Camp", 60, 400);
+					if (!_root1.getChildren().contains(_shovelfselect)) {
+						_shovelfselect.setMinWidth(50);
+						_shovelfselect.setMinHeight(25);
+						_shovelfselect.setLayoutX(140);
+						_shovelfselect.setLayoutY(410);
+						_root1.getChildren().add(_shovelfselect);
+
+						_shovelfselect.setOnMousePressed(m::handleButtonPress);
+					}
+				} else {
+					_character1.setOtherChar(_character2);
+					_character2.setOtherChar(_character1);
+					_root1.getChildren().remove(_emeraldselect);
+					_root1.getChildren().remove(_moonselect);
+					_root1.getChildren().remove(_finalselect);
+					_root1.getChildren().remove(_giygasselect);
+					_root1.getChildren().remove(_shovelfselect);
+					for(Backdrop b : _backdrops) {
+						b.render(_gc);
+					}
+					for(Platform p: _platforms) {
+						p.render(_gc);
+					}
 					_gc.setFont(Font.font("Arial", 20));
 					_gc.setFill(_character1.getColor());
 					
@@ -404,17 +513,17 @@ public class TheGame extends Application {
 								_gc.setFill(Color.YELLOW);
 								_gc.fillText("Player 2 Wins!", 400, 200);
 							} else {
-								_character1.respawn();
-								_character1.die();
+								//_character1.respawn();
+								//_character1.die();
 							}
 						} else if (_character2.isGone()) {
 							if (_character2.getLives() == 0) {
-								_character2.die();
+							
 								_gc.setFill(Color.WHITE);
 								_gc.fillText("Player 1 Wins!", 400, 200);
 							} else {
-								_character2.respawn();
-								_character2.die();
+								//_character2.respawn();
+								//_character2.die();
 
 							}
 						}
@@ -750,8 +859,74 @@ public class TheGame extends Application {
 
 			_player1picked = false;
 			_player2picked = false;
+			_stageselected = false;
+			_backdrops.clear();
 			_attacks.clear();
+			_platforms.clear();
+			_gravity = 0.8;
 			_root1.getChildren().remove(_replaybutton);
+			try {
+				_player.stop();
+			} catch (BasicPlayerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+	        
+		}
+		if(click.getSource().equals(_emeraldselect)) {
+			Platform p = new PlatformImpl(125, 400, 225, 200);
+			Platform p2 = new PlatformImpl(525, 500, 225, 100);
+			_platforms.add(p);
+			_platforms.add(p2);
+			_stageselected = true;
+			_scene.setFill(Color.color(0.14, 0.14, 0.14));
+			playStageSong("/sounds/cave.mp3");
+		}
+		if(click.getSource().equals(_moonselect)) {
+			Platform p = new PlatformImpl();
+			p.setImage(new Image("moon.jpg"));
+			_platforms.add(p);
+			_gravity = 0.5;
+			_stageselected = true;
+			_backdrops.add(new Backdrop(500, 100, 274, 219, "earth", new Image("earth.png")));
+			playStageSong("/sounds/moon.mp3");
+		}
+		if(click.getSource().equals(_finalselect)) {
+			Platform p = new PlatformImpl();
+			p.setImage(new Image("purplebox.jpg"));
+			_platforms.add(p);
+			_stageselected = true;
+			_backdrops.add(new Backdrop(0, 0, 900, 600, "fdbackground", new Image("fdbackground.jpg")));
+			playStageSong("/sounds/fdsong.mp3");
+		}
+		if(click.getSource().equals(_giygasselect)) {
+			Platform p = new PlatformImpl(100, 400, 140, 200);
+			Platform p2 = new PlatformImpl(240, 375, 140, 225);
+			Platform p3 = new PlatformImpl(380, 350, 140, 250);
+			Platform p4 = new PlatformImpl(520, 375, 140, 225);
+			Platform p5 = new PlatformImpl(660, 400, 140, 200);
+			p.setImage(new Image("darkred.jpg"));
+			p2.setImage(new Image("darkred.jpg"));
+			p3.setImage(new Image("darkred.jpg"));
+			p4.setImage(new Image("darkred.jpg"));
+			p5.setImage(new Image("darkred.jpg"));
+			_platforms.add(p);
+			_platforms.add(p2);
+			_platforms.add(p3);
+			_platforms.add(p4);
+			_platforms.add(p5);
+			_stageselected = true;
+			_backdrops.add(new Backdrop(0, 0, 900, 600, "giygas", new Image("giygasstage.gif")));
+			playStageSong("sounds/giygas.mp3");
+		}
+		if(click.getSource().equals(_shovelfselect)) {
+			Platform p = new PlatformImpl(200, 491, 450, 600-491);
+			p.setImage(new Image("clear.png"));
+			_platforms.add(p);
+			_stageselected = true;
+			_backdrops.add(new Backdrop(0, 0, 900, 600, "shovelforest", new Image("shovelforest.jpg")));
+			playStageSong("/sounds/shovelsong.mp3");
 		}
 
 	}
@@ -793,7 +968,47 @@ public class TheGame extends Application {
 			TheGame._attacks.remove(a);
 		}
 	}
+	public static List<Platform> getPlatforms() {
+		return _platforms;
+	}
 	
-	
+	public void closeWindow(WindowEvent w) {
+		try {
+			_player.stop();
+		} catch (BasicPlayerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		_stage.close();
+	}
+
+ public static void playStageSong(String url) {
+
+	 
+	 try {
+		 String pathToMp3 = "C:/Users/music/Documents/Workspace/Knightfight/src" +"/"+ url;
+	     _player.open(new URL("file:///" + pathToMp3));
+	     _player.play();
+	 } catch (BasicPlayerException | MalformedURLException e) {
+	     e.printStackTrace();
+	 }
+ }
+ public static synchronized void playSound(final String url) {
+	  new Thread(new Runnable() {
+	  // The wrapper thread is unnecessary, unless it blocks on the
+	  // Clip finishing; see comments.
+	    public void run() {
+	      try {
+	        Clip clip = AudioSystem.getClip();
+	        AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+	          TheGame.class.getResource(url));
+	        clip.open(inputStream);
+	        clip.start(); 
+	      } catch (Exception e) {
+	        System.err.println(e.getMessage());
+	      }
+	    }
+	  }).start();
+	}
 
 }

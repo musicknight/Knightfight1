@@ -23,6 +23,8 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 	protected double _damage = 1;
 	protected boolean _xtumbling;
 	protected boolean _ytumbling;
+	protected boolean _canmovex = true;
+	protected boolean _canmovey = true;
 	protected int _width;
 	protected int _height;
 	protected boolean _immune;
@@ -40,6 +42,7 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 	protected Image _clear = new Image("clear.png");
 	protected int _restingwidth;
 	protected int _restingheight;
+	protected boolean _startedrespawning = false;
 
 	public CharacterImpl(String ID) {
 		super(0, 300, ID);
@@ -74,7 +77,7 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 
 		if (_immune) {
 
-			if (_spawnimmunecounter == 50) {
+			if (_spawnimmunecounter == 60) {
 				_immune = false;
 			}
 		}
@@ -91,6 +94,29 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 				_cd = 0;
 			}
 		}
+		if(_canmovex) {
+			_x += _xvelocity;
+		}
+		if(_canmovey) {
+			_y+= _yvelocity;
+		}
+		if(_y > 600) {
+			
+			if(_lives >= 1) {
+			if(!_startedrespawning) {
+				_counter = 0;
+				_startedrespawning = true;
+				die();
+				_canact = false;
+				TheGame.playSound("/sounds/death.wav");
+			}
+			if(_counter == 30) {
+				respawn();
+				_startedrespawning = false;
+			}
+		}
+		}
+
 
 	}
 
@@ -152,24 +178,50 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 				_ytumbling = false;
 			}
 		}
-		if ((_x + _width + _xvelocity < 900 && _x - 3 + _xvelocity > 0)) {
-			if (!(_y > 400 - _height && (_x + _xvelocity > 150 - _width && _x + _xvelocity < 750))) {
-				_x += _xvelocity;
-
+		for(Platform p : TheGame.getPlatforms()){
+			if ((_x + _width + _xvelocity < 900 && _x - 3 + _xvelocity > 0)) {
+				if ((_y > p.getY() - _height && (_x + _xvelocity > p.getX() - _width && _x + _xvelocity < (p.getX() + p.getWidth())))) {
+					_canmovex = false;
+				} else {
+					if(TheGame.getPlatforms().indexOf(p) ==0) {
+					_canmovex = true;
+					}
+				}
+			} else {
+				if(TheGame.getPlatforms().indexOf(p) ==0) {
+					_canmovex = false;
+					}
 			}
-		}
-		
-		if ((_x > 150 - _width && _x < 750 && _y > 400 - _height)) {
-			_y+=_yvelocity;
+			
+			if ((_x > p.getX() - _width && _x < (p.getX() + p.getWidth())&& _y > p.getY() - _height)) {
+			
+					if(_yvelocity < 0) {
+					if(_canmovey == false){
+						if(TheGame.getPlatforms().indexOf(p)==0){
+						_canmovey = true;
+						}
+					}
+					} else {
+						_canmovey = false;
+						_y = p.getY() - _height;
+					}
 
-	} else if ((_x > 150 - _width && _x < 750 && _y + _yvelocity > 400 - _height)) {
-			_onplatform = true;
-			_yvelocity = 0;
-			_canjump1 = true;
-			_canjump2 = true;
-		} else {
-			_onplatform = false;
-			_y += _yvelocity;
+	
+			} else if ((_x > p.getX() - _width && _x < (p.getX() + p.getWidth()) && _y + _yvelocity > p.getY() - _height)) {
+				_onplatform = true;
+				_yvelocity = 0;
+				_canjump1 = true;
+				_canjump2 = true;
+				_canmovey = false;
+			} else {
+				if(TheGame.getPlatforms().indexOf(p) ==0) {
+					_onplatform = false;
+				}
+				if(TheGame.getPlatforms().indexOf(p) ==0) {
+					_canmovey = true;
+					
+				}
+			}
 		}
 		
 		
@@ -256,7 +308,11 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 				_ultcharge += h.getDamage() / 3;
 				h.getCharacter().addUltCharge(h.getDamage() / 6);
 			}
-			_xvelocity = _damagefactor * xdirection * h.getKnockback() * (0.006 * (_damage));
+			if(!h.isSetKnockback()) {
+				_xvelocity = _damagefactor * xdirection * h.getKnockback() * (0.006 * (_damage));
+			} else {
+				_xvelocity = xdirection * h.getKnockback();
+			}
 		} else {
 			_dodged = true;
 		}
@@ -321,6 +377,7 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 	}
 
 	public void respawn() {
+		
 		_damage = 1;
 		_xvelocity = 0;
 		_yvelocity = 0;
@@ -461,6 +518,12 @@ public abstract class CharacterImpl extends EntityImpl implements Character {
 		} else {
 			return _x+_width;
 		}
+	}
+	public int getRealX() {
+		return _x;
+	}
+	public int getRealY() {
+		return _y;
 	}
 	
 }

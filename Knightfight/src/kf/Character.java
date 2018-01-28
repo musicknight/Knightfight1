@@ -122,5 +122,7 @@ public interface Character {
 	
 	public boolean isHasPriority();
 	
+	public int getRealX();
 	
+	public int getRealY();
 }

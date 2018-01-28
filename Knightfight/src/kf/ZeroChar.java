@@ -87,6 +87,7 @@ public class ZeroChar extends CharacterImpl {
 			_image = new Image("zero/attack1/slash1left.gif");
 			_getxleft = false;
 		}
+		
 		}
 		if(_attack1stage == 1 && _counter >= 14) {
 			_counter = 0;
@@ -107,7 +108,10 @@ public class ZeroChar extends CharacterImpl {
 			_y -= 15;
 			_xtumbling = true;
 			TheGame.clearHitboxes("zslash2", this);
-			TheGame._attacks.add(new OffsetHitbox("zslice1", this, _x+x, _y+0, 54, 48, 10, 3.5, _clear));
+			Hitbox attack = new OffsetHitbox("zslice1", this, x, 0, 54, 48, 5, 3.5, _clear);
+			attack.setSetKnockback(true);
+			TheGame._attacks.add(attack);
+			TheGame.playSound("/zero/sounds/zero1.wav");
 		}
 		if(_attack1stage == 2 && _counter >= 8) {
 			_getxleft = true;
@@ -127,6 +131,7 @@ public class ZeroChar extends CharacterImpl {
 			_width = 105;
 			_height = 57;
 			_xtumbling = true;
+			TheGame.playSound("/zero/sounds/zero1.wav");
 		}
 		}
 	}
@@ -164,6 +169,7 @@ public class ZeroChar extends CharacterImpl {
 			} else {
 				_image = new Image("zero/attack1/slash3left.gif");
 			}
+			TheGame.playSound("/zero/sounds/zero1.wav");
 		}
 		if(_counter == 6) {
 			//slash happens here
@@ -183,7 +189,9 @@ public class ZeroChar extends CharacterImpl {
 				x = 0;
 			}
 			_xtumbling = true;
-			TheGame._attacks.add(new OffsetHitbox("zslash1", this, _x+x, _y+0, 50, 90, 10, 3.5, _clear));
+			Hitbox attack = new OffsetHitbox("zslash1", this, x, 0, 50, 90, 3, 3.5, _clear);
+			attack.setSetKnockback(true);
+			TheGame._attacks.add(attack);
 		}
 		if(_counter == 8) {
 			int x;
@@ -223,7 +231,9 @@ public class ZeroChar extends CharacterImpl {
 				x = 0;
 			}
 			TheGame.clearHitboxes("zslash1", this);
-			TheGame._attacks.add(new OffsetHitbox("zslash2", this, _x+x, _y+30, 54, 12, 10, 7, _clear));
+			Hitbox attack = new OffsetHitbox("zslash2", this, x, 30, 54, 12, 10, 7, _clear);
+			attack.setSetKnockback(true);
+			TheGame._attacks.add(attack);
 		}
 		if(_counter == 14) {
 			_width = 75;
@@ -422,6 +432,7 @@ public class ZeroChar extends CharacterImpl {
 		_y-=3;
 		_height = 63;
 		}
+		TheGame.playSound("/zero/sounds/zero2.wav");
 	}
 	
 	public void executeAttack2() {
@@ -436,6 +447,7 @@ public class ZeroChar extends CharacterImpl {
 			_height = 66;
 			
 			_y-=3;
+			
 		}
 		if(_counter == 18) {
 			//hitbox appears here
@@ -451,7 +463,7 @@ public class ZeroChar extends CharacterImpl {
 			_width = 126;
 			_height = 96;
 			_y-=30;
-			Hitbox attack = new OffsetHitbox("zsmash", this, _x+x, _y+0, 48, 96, 25, 24, _clear);
+			Hitbox attack = new OffsetHitbox("zsmash", this, x, 0, 48, 96, 25, 24, _clear);
 			TheGame._attacks.add(attack);
 			
 		}
@@ -576,7 +588,8 @@ public class ZeroChar extends CharacterImpl {
 			_yvelocity = -17;
 			_height = 99;
 			_y-=45;
-			TheGame._attacks.add(new OffsetHitbox("zjump1", this, _x+x, _y+0, 51, 99, 15, 20, _clear));
+			TheGame._attacks.add(new OffsetHitbox("zjump1", this, x, 0, 51, 99, 15, 20, _clear));
+			TheGame.playSound("/zero/sounds/zero3.wav");
 		}
 		if(_counter == 7) {
 			if(_facing.equals("right")) {
@@ -602,7 +615,7 @@ public class ZeroChar extends CharacterImpl {
 			}
 			_width = 75;
 			TheGame.clearHitboxes("zjump1", this);
-			TheGame._attacks.add(new OffsetHitbox("zjump2", this, _x+x, _y+0, 75-36, 27, 15, 20, _clear));
+			TheGame._attacks.add(new OffsetHitbox("zjump2", this, x, 0, 75-36, 27, 15, 20, _clear));
 		}
 		if(_counter == 15) {
 			if(_facing.equals("right")) {
@@ -659,42 +672,49 @@ public class ZeroChar extends CharacterImpl {
 		}
 		if(_counter == 19) {
 			_image = new Image("zero/attacku/spin2.gif");
-			TheGame._attacks.add(new OffsetHitbox("zult", this, _x+30, _y+30, 75, 75, 30, 30, _clear));
+			TheGame._attacks.add(new OffsetHitbox("zult", this, 30, 30, 75, 75, 30, 30, _clear));
+			TheGame.playSound("/zero/sounds/zero1.wav");
 		}
 		if(_counter == 21) {
 			_image = new Image("zero/attacku/spin3.gif");
 			TheGame.clearHitboxes("zult", this);
-			TheGame._attacks.add(new OffsetHitbox("zult", this, _x+30, _y+30, 75, 75, 30, 30, _clear));
+			TheGame._attacks.add(new OffsetHitbox("zult", this, 30, 30, 75, 75, 30, 30, _clear));
+
 		}
 		if(_counter == 23) {
 			_image = new Image("zero/attacku/spin4.gif");
 			TheGame.clearHitboxes("zult", this);
-			TheGame._attacks.add(new OffsetHitbox("zult", this, _x+30, _y+30, 75, 75, 30, 30, _clear));
+			TheGame._attacks.add(new OffsetHitbox("zult", this, 30, 30, 75, 75, 30, 30, _clear));
+
 		}
 		if(_counter == 25) {
 			_image = new Image("zero/attacku/spin5.gif");
 			TheGame.clearHitboxes("zult", this);
-			TheGame._attacks.add(new OffsetHitbox("zult", this, _x+30, _y+30, 75, 75, 30, 30, _clear));
+			TheGame._attacks.add(new OffsetHitbox("zult", this, 30, 30, 75, 75, 30, 30, _clear));
+
 		}
 		if(_counter == 27) {
 			_image = new Image("zero/attacku/spin6.gif");
 			TheGame.clearHitboxes("zult", this);
-			TheGame._attacks.add(new OffsetHitbox("zult", this, _x+30, _y+30, 75, 75, 30, 30, _clear));
+			TheGame._attacks.add(new OffsetHitbox("zult", this, 30, 30, 75, 75, 30, 30, _clear));
+			TheGame.playSound("/zero/sounds/zero1.wav");
 		}
 		if(_counter == 29) {
 			_image = new Image("zero/attacku/spin7.gif");
 			TheGame.clearHitboxes("zult", this);
-			TheGame._attacks.add(new OffsetHitbox("zult", this, _x+30, _y+30, 75, 75, 30, 30, _clear));
+			TheGame._attacks.add(new OffsetHitbox("zult", this, 30, 30, 75, 75, 30, 30, _clear));
+
 		}
 		if(_counter == 31) {
 			_image = new Image("zero/attacku/spin8.gif");
 			TheGame.clearHitboxes("zult", this);
-			TheGame._attacks.add(new OffsetHitbox("zult", this, _x+30, _y+30, 75, 75, 30, 30, _clear));
+			TheGame._attacks.add(new OffsetHitbox("zult", this, 30, 30, 75, 75, 30, 30, _clear));
 		}
 		if(_counter == 33) {
 			_image = new Image("zero/attacku/spin9.gif");
 			TheGame.clearHitboxes("zult", this);
-			TheGame._attacks.add(new OffsetHitbox("zult", this, _x+30, _y+30, 75, 75, 30, 30, _clear));
+			TheGame._attacks.add(new OffsetHitbox("zult", this, 30, 30, 75, 75, 30, 30, _clear));
+
 			if(_timesspun < 5) {
 				_timesspun++;
 				_counter = 15;

@@ -15,6 +15,7 @@ public class HitboxImpl extends EntityImpl implements Hitbox {
 	protected boolean _bounces = false;
 	protected double _knockback;
 	protected double _damage;
+	protected boolean _setknockback = false;
 	protected Character _character;
 	protected boolean _collided;
 	protected boolean _gone = false;
@@ -76,7 +77,8 @@ public class HitboxImpl extends EntityImpl implements Hitbox {
 		}
 		_y += _yvelocity;
 		_x += _xvelocity;
-		if ((_x > 100 && _x < 750 && _y + _yvelocity > 400 - _height)) {
+		for(Platform p : TheGame.getPlatforms()){
+		if ((_x > p.getX() && _x < (p.getX()+p.getWidth()) && _y + _yvelocity > p.getY() - _height)) {
 			if (_bounces) {
 				_yvelocity = -_yvelocity / 2;
 				if (_xvelocity > 0) {
@@ -120,6 +122,7 @@ public class HitboxImpl extends EntityImpl implements Hitbox {
 
 				}
 			}
+		}
 		}
 
 	}
@@ -211,7 +214,12 @@ public class HitboxImpl extends EntityImpl implements Hitbox {
 	public void setY(int y){
 		_y = y;
 	}
-	
+	public boolean isSetKnockback() {
+		return _setknockback;
+	}
+	public void setSetKnockback(boolean b) {
+		_setknockback = b;
+	}
 
 
 }

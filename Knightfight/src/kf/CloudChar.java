@@ -13,6 +13,7 @@ public class CloudChar extends CharacterImpl {
 	private boolean _attack3;
 	private boolean _diving;
 	private boolean _hitdive;
+	private boolean _reset = false;
 
 	public CloudChar(String ID) {
 		super(ID);
@@ -26,10 +27,16 @@ public class CloudChar extends CharacterImpl {
 	@Override
 	public void render(GraphicsContext gc) {
 		if (!_attack1 && !_attack2 && !_attack3 && !_attacku) {
+			_width = 80;
+			_height = 70;
 			if (_facing.equals("right")) {
 				_image = new Image("cloud/cloud.png");
 			} else {
 				_image = new Image("cloud/cloudleft.png");
+			}
+			if(_reset) {
+				_y+=40;
+				_reset = false;
 			}
 		}
 		super.render(gc);
@@ -104,6 +111,7 @@ public class CloudChar extends CharacterImpl {
 				}
 			}
 			TheGame._attacks.add(attack);
+			TheGame.playSound("/cloud/sounds/cloud1.wav");
 		}
 		if (_counter == 17) {
 			_y -= 41;
@@ -129,64 +137,92 @@ public class CloudChar extends CharacterImpl {
 		_canact = false;
 		_attack2 = true;
 		_counter = 0;
+		_xvelocity = 0;
 
 	}
 
 	public void executeAttack2() {
-		if (!_xtumbling) {
-			_xvelocity = 0;
-		}
-		if (_xtumbling) {
-			if (_facing.equals("right")) {
-				_image = new Image("cloud/cloud.png");
-			} else {
-				_image = new Image("cloud/cloudleft.png");
-			}
-			if (_counter < 30) {
-				_y -= 9;
-			}
-			_width = 80;
-			_height = 70;
-			_attack2 = false;
-			return;
-		}
+		
 		if (_counter == 0) {
-			_height = 60;
-			_y += 9;
-			_width = 84;
+			_width = 63;
+			_height = 70;
 			if (_facing.equals("right")) {
-				_image = new Image("cloud/cloudprelight.png");
+				_image = new Image("cloud/dash1.png");
 			} else {
-				_image = new Image("cloud/cloudprelightleft.png");
+				_image = new Image("cloud/dash1left.png");
+				_x += 23;
 			}
 		}
-		if (_counter == 20) {
-			_width = 100;
+		if (_counter == 18) {
+			//dash and hitbox start here
+			_width = 77;
+			_height = 49;
+			_y += 21;
 			if (_facing.equals("right")) {
-				_image = new Image("cloud/cloudlight.png");
+				_image = new Image("cloud/dash2.png");
+				_xvelocity = 39;
 			} else {
-				_image = new Image("cloud/cloudlightleft.png");
+				_image = new Image("cloud/dash2left.png");
+				_xvelocity = -35;
 			}
-			Hitbox attack = new HitboxImpl("cloudbolt", this, false,
-					(_otherchar.getX() + _otherchar.getWidth() / 2) - 20, 1, 20, 100, 0, 16, 20, 20,
-					new Image("cloud/cloudbolt.png"));
-			for (Hitbox a : TheGame._attacks) {
-				if (a.getID().equals("cloudbolt") && a.getCharacter().equals(this)) {
-
-					return;
-				}
-			}
+			_xtumbling = true;
+			Hitbox attack = new OffsetHitbox("clouddash1", this, 20, 5, 44, 31, 20, 20, _clear);
 			TheGame._attacks.add(attack);
+			TheGame.playSound("/cloud/sounds/cloud2.wav");
+			
+		}
+		if (_counter == 22) {
+			_width = 86;
+			_height = 62;
+			int x;
+			if (_facing.equals("right")) {
+				_image = new Image("cloud/dash3.png");
+				x = 20;
+			} else {
+				_image = new Image("cloud/dash3left.png");
+
+			}
+			
+					
+		}
+		if (_counter == 26) {
+			_width = 70;
+			_height = 100;
+			if (_facing.equals("right")) {
+				_image = new Image("cloud/dash4.png");
+			} else {
+				_image = new Image("cloud/dash4left.png");
+				//_x-=23;
+			}
+		}
+		if (_counter == 28) {
+			_width = 62;
+			_height = 110;
+			if (_facing.equals("right")) {
+				_image = new Image("cloud/dash5.png");
+			} else {
+				_image = new Image("cloud/dash5left.png");
+				//_x-=23;
+			}
 		}
 		if (_counter == 30) {
-			_width = 80;
-			_y -= 9;
-			_height = 70;
-			_canact = true;
-			_attack2 = false;
-
+			_width = 43;
+			_height = 110;
+			if (_facing.equals("right")) {
+				_image = new Image("cloud/dash6.png");
+			} else {
+				_image = new Image("cloud/dash6left.png");
+				//_x-=23;
+			}
+			TheGame.clearHitboxes("clouddash1", this);
 		}
-
+		if(_counter == 50) {
+			_reset = true;
+			_attack2 = false;
+			_canact = true;
+			
+		}
+		
 	}
 
 	@Override
@@ -204,6 +240,7 @@ public class CloudChar extends CharacterImpl {
 			_image = new Image("cloud/cloudjump1left.png");
 			_x+=20;
 		}
+		TheGame.playSound("/cloud/sounds/cloud3.wav");
 
 	}
 
@@ -259,11 +296,12 @@ public class CloudChar extends CharacterImpl {
 				_x -= 60;
 				x=0;
 			}
-			Hitbox attack = new OffsetHitbox("clouddive", this, _x+x, _y+36, 78, 12, 25, 25, _clear);
+			Hitbox attack = new OffsetHitbox("clouddive", this, x, 36, 78, 12, 25, 25, _clear);
 			TheGame._attacks.add(attack);
 
 			_yvelocity = 10;
 			_diving = true;
+			TheGame.playSound("/cloud/sounds/cloud4.wav");
 		}
 
 	}
@@ -283,6 +321,7 @@ public class CloudChar extends CharacterImpl {
 			} else {
 				_image = new Image("cloud/cloudpreultleft.png");
 			}
+			TheGame.playSound("/cloud/sounds/cloud5.wav");
 		}
 
 	}
@@ -306,35 +345,42 @@ public class CloudChar extends CharacterImpl {
 		if (_counter == 20) {
 
 			TheGame._attacks.add(attack);
+			TheGame.playSound("/cloud/sounds/cloud5.wav");
 		}
 		if (_counter == 30) {
 
 			TheGame._attacks.add(attack);
-
+			TheGame.playSound("/cloud/sounds/cloud5.wav");
 		}
 		if (_counter == 40) {
 
 			TheGame._attacks.add(attack);
+			TheGame.playSound("/cloud/sounds/cloud5.wav");
 		}
 		if (_counter == 50) {
 
 			TheGame._attacks.add(attack);
+			TheGame.playSound("/cloud/sounds/cloud5.wav");
 		}
 		if (_counter == 60) {
 
 			TheGame._attacks.add(attack);
+			TheGame.playSound("/cloud/sounds/cloud5.wav");
 		}
 		if (_counter == 70) {
 
 			TheGame._attacks.add(attack);
+			TheGame.playSound("/cloud/sounds/cloud5.wav");
 		}
 		if (_counter == 80) {
 
 			TheGame._attacks.add(attack);
+			TheGame.playSound("/cloud/sounds/cloud5.wav");
 		}
 		if (_counter == 90) {
 
 			TheGame._attacks.add(attack);
+			TheGame.playSound("/cloud/sounds/cloud5.wav");
 		}
 		if (_counter == 115) {
 			_attacku = false;

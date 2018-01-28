@@ -3,7 +3,7 @@
 
 Thanks for checking out my game!
 
-The objective is to knock the other character off of the platform 3 times (think smash). if a player has higher damage that means they will be knocked back more. taking/dealing damage builds up ultimate chrage. when you see the message U:READY under your character's damage/lives, press ultimate for a strong attack that makes you immune!
+The objective is to knock the other character off of the platform 3 times (think smash). if a player has higher damage that means they will be knocked back more. taking/dealing damage builds up ultimate charge. when you see the message U:READY under your character's damage/lives, press ultimate for a strong attack that makes you immune!
 
 CONTROLS:
 
@@ -81,7 +81,7 @@ cloud - seems kind of weak, thinking of ways to make him better. all of his move
  
  attack1-blade beam: swing your sword and emit a beam projectile that does moderate damage
  
- attack2-thunder: after a short delay, shoot a lightning bolt down on your opponents position from the sky, dealing moderate damage/knockback
+ attack2-braver: after a short delay, dash in a direction and swing your sword for moderate damage/knockback
  
  attack3-climhazzard: rise into the air before slamming your sword down onto your foes, dealing moderate damage and decent knockback
 

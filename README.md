@@ -136,3 +136,23 @@ attack2-divebomb: transform into a fireball and dive towards the stage, dealing 
 attack3-soaring flame: propel yourself backwards and up by launching a fireball in the opposite direction. can only be used twice in a row without landing on the platform.
 
 ultimate-meteor shower: channel a meteor shower to rain upon your foe. This one is mostly luck whether its a guaranteed kill or not.
+
+specter knight - very mobile with attack3, buildup damage with that and attack1 and finish off with attack2
+
+attack1-slice: quickly spin your scythe around, does small damage/knockback but can be spammed
+
+attack2-reaping slash: after a brief delay perform a short high knockback attack
+
+attack3-dashing slash: dash foward and slightly into the air, if pressed twice in a row a second dash aimed downward will occur, does damage
+
+ultimate-form of the specter: turn into your true form, gaining the ability to fly around with w/a/s/d or i/j/k/l and press any of your attack keys to perform a deadly slashing attack
+
+fefnir - slow-moving, delayed attacks that pack a punch
+
+attack1-twinfire blast: after a short delay, blast two strong fireballs and move slightly backward
+
+attack2-mega charge: after a delay, charge forward dealing moderate damage/knockbback
+
+attack3-explosive volley:similar to frank's attack3, jump into the air and lob 4 explosives in a volley towards the stage
+
+ultimate-fiery rain: conjure a second blaster and shoot a barrage of fire into the air which rains down on the stage

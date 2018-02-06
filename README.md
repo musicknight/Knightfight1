@@ -185,4 +185,4 @@ attack2-phase rush: after a brief delay, dash quickly forwards and downwards, de
 
 attack3-upward volley: shoot 3 balls in the air that come back towards the ground
 
-attack3-remnant of fate: assume your true form and shoot hundreds of energy shots in a spiral that covers the stage
+ultimate-remnant of fate: assume your true form and shoot hundreds of energy shots in a spiral that covers the stage

@@ -89,7 +89,7 @@ ultimate-omnislash: dash repeatedly at your enemy from one side of the screen. I
 
 goku - like ninja kirby, not very much knockback(outside of ult), if attack2 is used correctly he can be very powerful. attack3 racks up a lot of damage and while goku isnt immune to damage during it, he is immune to knockback.
 
-attack1-focused punch: after a delay, dash with a punch that deals moderate damage/knockback
+attack1-focused kick: after a delay, dash with a kick that deals moderate damage/knockback
 
 attack2-vanish: dissapear for a brief period, dodging all attacks
 
@@ -121,9 +121,9 @@ frank - not sure where he stands, very mobile with attack3, and attack2 is a goo
 
 attack1-pellet shot: shoot small, quick but weak pellets. only 2 may be on screen at a time
 
-attack2-gun punch: after a brief delay, make a small dash foward, dealing moderate damage/knockback to anyone in your way
+attack2-double bolts: after a delay, unleash melee attacks on either side of you that do high knockback
 
-attack3-skybolt volley :fly into the air, then shoot out a volley of 5 energy blasts towards the ground.
+attack3-skybolt volley : shoot out a volley of 5 energy blasts towards the ground.
 
 skybolt barrage: propel yourself upwards with a barrage of energy and hover over your opponent to pelt them with it. Easy kill if you can make your way over to your opponent, can also be used as a lifesaving recovery
 
@@ -139,7 +139,7 @@ ultimate-meteor shower: channel a meteor shower to rain upon your foe. This one 
 
 specter knight - very mobile with attack3, buildup damage with that and attack1 and finish off with attack2
 
-attack1-slice: quickly spin your scythe around, does small damage/knockback but can be spammed
+attack1-scythe throw: throw your scythe, does moderate damage/knockback
 
 attack2-reaping slash: after a brief delay perform a short high knockback attack
 
@@ -156,3 +156,7 @@ attack2-mega charge: after a delay, charge forward dealing moderate damage/knock
 attack3-explosive volley:similar to frank's attack3, jump into the air and lob 4 explosives in a volley towards the stage
 
 ultimate-fiery rain: conjure a second blaster and shoot a barrage of fire into the air which rains down on the stage
+
+meta knight - A lot of dashes, be careful not to fly off the screen, in case you do he has 4 double jumps
+
+attack1-triple strike dash- dash quickly and let off 3 strikes, the last shooting out a sword projectile

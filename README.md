@@ -159,4 +159,30 @@ ultimate-fiery rain: conjure a second blaster and shoot a barrage of fire into t
 
 meta knight - A lot of dashes, be careful not to fly off the screen, in case you do he has 4 double jumps
 
-attack1-triple strike dash- dash quickly and let off 3 strikes, the last shooting out a sword projectile
+attack1-triple strike dash: dash quickly and let off 3 strikes, the last shooting out a sword projectile
+
+attack2-bouncing strike: dash foward and strike once, if it hits a target you will bounce off of them
+
+attack3-stab: after a breif delay, stab fowards and deal heavy damage/knockback
+
+ultimate-meta tornado: send foward a tornado that covers the screen, guaranteed kill at high %s
+
+phantom - very quick and mobile
+
+attack1-shuriken- spin out a shuriken in your hand before launching it forward
+
+attack2-silver strike- dash forward and slightly up, can be used 3 times in midair
+
+attack3-rising kunai- throw down 3 knives in an arc while dashing upwards, can be used once in midair
+
+ultimate-rising kunai barrage- soar into the sky and release a barrage of knives onto the stage, aiming with A/D or J/L
+
+the enchantress- good ranged attacks and powerful knockback with attack2
+
+attack1-dark bolt: charge up a shot and fire it. can move while charging
+
+attack2-phase rush: after a brief delay, dash quickly forwards and downwards, dealing heavy damage/knockback
+
+attack3-upward volley: shoot 3 balls in the air that come back towards the ground
+
+ultimate-remnant of fate: assume your true form and shoot hundreds of energy shots in a spiral that covers the stage

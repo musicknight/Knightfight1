@@ -186,3 +186,11 @@ attack2-phase rush: after a brief delay, dash quickly forwards and downwards, de
 attack3-upward volley: shoot 3 balls in the air that come back towards the ground
 
 ultimate-remnant of fate: assume your true form and shoot hundreds of energy shots in a spiral that covers the stage
+
+leviathan- good at dodging and staying in the air
+
+attack1-frost dragon: spin your staff and shoot out a powerful projectile
+
+attack2-phase dash: does no damage, but dashes forward quickly and refreshes attack3 cooldown, that is, allows you to use it once more before landing. phase dash can be used twice before landing
+
+attack3-

@@ -193,4 +193,26 @@ attack1-frost dragon: spin your staff and shoot out a powerful projectile
 
 attack2-phase dash: does no damage, but dashes forward quickly and refreshes attack3 cooldown, that is, allows you to use it once more before landing. phase dash can be used twice before landing
 
-attack3-
+attack3-rising flurry: spin your staff and fly upward, dealing damage to anyone you hit. at the end of the spin, shoot a weak projectile downwards. can only be used once in midair before landing, unless attack2 is used which refreshes this.
+
+ultimate-rapid fire: spin your staff in front of you and fire a barrage of projectiles while you are free to move.
+
+naruto- quick projectiles with attack1, heavy damage with attack2 and 3
+
+attack1-kunai: if used on the ground, throw a projectile straight in front of you, if used in midair, throws one diagonally towards the ground
+
+attack2-naruto combo: 3 swift hits that propel you forward, the final one doing decent damage/knockback
+
+attack3-rasengan: charge up a powerful, large projectile and shoot it forwards
+
+ultimate-shadow clone jutsu: surround yourself with 4 clones that mimic all your moves
+
+buu- standard fighter with some relatively quick moves
+
+attack1-ki blast: after a brief windup fire a projectile forwards
+
+attack2-majin whip/majin slam: if on the ground, stretch your antenna forwards and deal moderate damage. if in the air, descend quickly and slam down onto the ground
+
+attack3-rising kick: kick up into the air, fairly low damage
+
+ultimate-majin spirit bomb: fly up into the air, transform into majin buu, and throw a huge, powerful projectile diagonally towards the ground.
